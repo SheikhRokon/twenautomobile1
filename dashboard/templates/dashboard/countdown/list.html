@@ -1,0 +1,77 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block dashboard_content %}
+      <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="container-full">
+      <!-- Content Header (Page header) -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="box-header with-border">
+                
+                <div class="row">
+                    <div class="col-8">
+                        <h3 class="box-title">Countdown List</h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <a class="btn btn-info me-1" href="{% url 'countdown-add' %}">Countdown Add</a>
+                    </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>GRADUTED_FROM_HERE</th>
+                                <th>NUMBER_OF_INSTRUCTOR</th>         
+                                <th>YEARS_ON_MARKET</th>         
+                                <th>PRESENT_STUDENTS</th>         
+                                <th>Edit</th>
+                                <th>Delete</th>                      
+                            </tr>
+                          </thead>
+                          <tbody>                           
+                            {% for c in countdown_list %}
+                            <tr>
+                                <td>{{ c.id }}</td>
+                                <td>{{ c.GRADUTED_FROM_HERE }}</td>
+                                <td>{{ c.NUMBER_OF_INSTRUCTOR }}</td>
+                                <td>{{ c.YEARS_ON_MARKET }}</td>
+                                <td>{{ c.PRESENT_STUDENTS }}</td>
+                              <td>
+                                <a class="btn btn-outline-primary" href="{% url 'countdown-edit' c.pk %}">Edit</a>
+                              </td>
+                              <td>
+                                  <a class="btn btn-outline-danger" href="{% url 'countdown-delete' c.pk %}">Delete</a>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                              
+                          </tbody>	  
+                    </table>
+                  </div>              
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->          
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    
+    </div>
+</div>
+<!-- /.content-wrapper -->
+{% endblock dashboard_content %}
+    
+
+

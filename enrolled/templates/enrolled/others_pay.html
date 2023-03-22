@@ -1,0 +1,56 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
+
+<style>
+    .page-banner-area {
+        background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-size: cover;
+        background-size: cover;
+        padding: 170px 0 80px;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="page-banner-area overlay overlay-black overlay-70">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner text-center col-12">
+                <h1>Payment Form</h1>
+                <ul>
+                    <li><a href="{% url 'home' %}">home</a></li>
+                    <li><span>payment-form</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5" >
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="checkout-title">Payment Information</h2><!-- End .checkout-title -->
+
+                {{ form|crispy }}
+                <input class="btn btn-primary bg-warning " type="submit" value="Submit">
+            </div><!-- End .col-lg-9 -->
+
+
+        </div><!-- End .row -->
+    </form>
+</div>
+
+
+{% endblock %}

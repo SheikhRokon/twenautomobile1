@@ -1,0 +1,94 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+	.page-banner-area {
+	  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  -webkit-background-size: cover ;
+	  background-size: cover ;
+	   padding: 170px 0 80px;
+	}
+	
+		</style>
+		
+<!-- Contatc Area
+============================================ -->
+<div class="page-banner-area overlay overlay-black overlay-70">
+	<div class="container">
+		<div class="row">
+			<div class="page-banner text-center col-12">
+				<h1>Contact us</h1>
+				<ul>
+					<li><a href="{% url 'home' %}">home</a></li>
+					<li><span>contact us</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="contact-area" class="contact-area bg-gray">
+	<div class="container pb-90 pt-90">
+		<!-- Section Title -->
+		<div class="row">
+			<div class="section-title text-center col-12 mb-45">
+				<h3 class="heading">touch in tweenautoschool</h3>
+				<div class="excerpt">
+					<p>this is we are</p>
+				</div>
+				<i class="icofont icofont-traffic-light"></i>
+			</div>
+		</div>
+		<div class="row">
+			<!-- Contact Info -->
+			<div class="contact-info col-lg-4 col-sm-5 col-12">
+				<div class="single-info text-left fix">
+					<div class="icon"><i class="icofont icofont-phone"></i></div>
+					<div class="content fix">
+						<h5>call us</h5>
+						<a href="tel:+8801521466771">+8801521466771</a>
+					</div>
+				</div>
+				<div class="single-info text-left fix">
+					<div class="icon"><i class="icofont icofont-envelope"></i></div>
+					<div class="content fix">
+						<h5>Email</h5>
+						<p><a href="mailto:info@tweenautoschool.com">info@tweenautoschool.com</a></p>
+					</div>
+				</div>
+				<div class="single-info text-left fix">
+					<div class="icon"><i class="icofont icofont-location-pin"></i></div>
+					<div class="content fix">
+						<h5>our location</h5>
+						<p>358/3/A, Hazi Bhaban,Modhubag, <br />Hatirjheel, Mogbazar, Dhaka-1217</p>
+						
+					</div>
+				</div>
+			</div>
+			<!-- Contact Form -->
+			<div class="contact-form form text-left col-lg-8 col-sm-7 col-12">
+				<form method="POST">
+					{% csrf_token %}
+					<div class="input-2">
+						<div class="input">{{ form.name }}</div>
+						<div class="input">{{ form.email }}</div>
+					</div>
+					<div class="input-2">
+						<div class="input">{{ form.phone }}</div>
+						<div class="input">{{ form.subject }}</div>
+					</div>				
+					<div class="input textarea"> {{ form.message }}</div>
+					<div class="input input-submit"><input type="submit" value="send message" /></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+

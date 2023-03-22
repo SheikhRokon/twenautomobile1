@@ -1,0 +1,163 @@
+{% load static %}
+{% load menu %}
+{% load cart_count %}
+
+{% block style %}
+<style>
+    .nt {
+        background-color: rgba(255, 255, 255, 0.415);
+        height: 70px;
+    }
+
+    .nm ul li a {
+        color: black;
+        opacity: 2;
+    }
+
+    .nm ul {
+        margin-top: -5px
+    }
+
+    .nm ul li a {
+        color: black;
+    }
+
+    @media only screen and (min-width: 980px) {
+        .nm ul li a {
+            color: white;
+        }
+    }
+</style>
+{% endblock style %}
+<!-- Header 1
+    ============================================ -->
+<div class="header-area header-absolute  header-transparent">
+    <div class="header-top ">
+        <div class="container">
+            <!-- Header Top -->
+            <div class="header-top-wrapper row">
+                <div class="header-top-left text-left col-md-3 col-6">
+                    <p><i class="icofont icofont-envelope"></i><span><a
+                                href="mailto:info@tweenautoschool.com">info@tweenautoschool.com</a></span></p>
+                </div>
+                <div class="header-top-left text-right col-md-3 col-6">
+                    <p><i class="icofont icofont-ui-call"></i><span><a
+                                href="tel:+8801521466771">+8801521466771</a></span></p>
+                </div>
+                <div class="header-top-right text-left col-md-3 col-7">
+                    <p><i class="icofont icofont-clock-time"></i><span>Saturday - Wednesday : 8am - 9pm</span></p>
+                </div>
+                <div class="header-top-right text-right col-md-3 col-5">
+                    <p><a class="border p-1 text-white" href="{% url 'certificate-verification' %}">Certificate
+                            Verification</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom sticky nt">
+        <div class="container">
+            <!--<div style="margin-bottom: -30px ; color: rgba(29, 29, 235, 0.705); margin-left: 20%;">
+                    <p>Tween Automobile School</p>
+                </div> -->
+            <div class="row justify-content-between">
+                <div class="navbar-header col-auto">
+                    <a href="{% url 'home' %}" class="logo navbar-brand"><img
+                            src="{% static 'automobileapp/img/logo/tlogo1.png' %}" alt=""
+                            style="width: 150px; margin-top:-20px;"></a>
+                </div>
+                <div class="main-menu mean-menu col-auto " style="margin-right: 80px;">
+                    <nav class="nm">
+                        <ul>
+                            <li class=" {% if request.resolver_match.url_name == 'home' %} active {% endif %}"><a
+                                    href="{% url 'home' %}">Home</a></li>
+
+                            <li class=" {% if request.resolver_match.url_name == 'course' %} active {% endif %}"><a
+                                    href="{% url 'course' %}">Courses <i class="icofont icofont-simple-down"></i></a>
+                                <ul>
+
+                                    {% for c in request|courses %}
+                                    <li><a href="{% url 'course-detals' c.slug %}">{{ c.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class=" {% if request.resolver_match.url_name == 'notice' %} active {% endif %}"><a
+                                    href="{% url 'notice' %}">Notice</a></li>
+                            <li class="
+                                {% if request.resolver_match.url_name == 'mediacover' or  request.resolver_match.url_name == 'video-gallery' or  request.resolver_match.url_name == 'image-gallery' %}
+                                active 
+                                {% endif %}">
+                                <a href="#">Media Center<i class="icofont icofont-simple-down"></i></a>
+                                <ul>
+                                    <li><a href="{% url 'image-gallery' %}">Photo-Gallery</a></li>
+                                    <li><a href="{% url 'mediacover' %}">Media Coverage</a></li>
+                                    <li><a href="{% url 'video-gallery' %}">Video-Gallery</a></li>
+                                </ul>
+                            </li>
+                            <li class="
+                                {% if request.resolver_match.url_name == 'event' or  request.resolver_match.url_name == 'career' or  request.resolver_match.url_name == 'review' %}
+                                active 
+                                {% endif %}">
+                                <a href="#">Get in Touch<i class="icofont icofont-simple-down"></i></a>
+                                <ul>
+                                    <li><a href="{% url 'event' %}">Event</a></li>
+                                    <li><a href="{% url 'career' %}">Career</a></li>
+                                    <li><a href="{% url 'review' %}">Review</a></li>
+                                </ul>
+                            </li>
+                            <li class="
+                                {% if request.resolver_match.url_name == 'instructor' or  request.resolver_match.url_name == 'protfolio' or  request.resolver_match.url_name == 'mission-vission' or  request.resolver_match.url_name == 'director_message' %}
+                                active 
+                                {% endif %}">
+                                <a href="#">About<i class="icofont icofont-simple-down"></i></a>
+                                <ul>
+                                    <li><a href="{% url 'about' %}">About Us</a></li>
+                                    <li><a href="{% url 'mission-vission' %}">Mission and Vission</a></li>
+                                    <li><a href="{% url 'director_message' %}">Chairman Message</a></li>
+                                    <li><a href="{% url 'instructor' %}">Our Instructor</a></li>
+                                </ul>
+                            </li>
+                            <li class=" {% if request.resolver_match.url_name == 'blogs' %} active {% endif %}"><a
+                                    href="{% url 'blogs' %}">Blogs</a></li>
+                            <li class=" {% if request.resolver_match.url_name == 'contact' %} active {% endif %}"><a
+                                    href="{% url 'contact' %}">Contact Us</a></li>
+                            <!-- <li class=" {% if request.resolver_match.url_name == 'cart-summary' %} active {% endif %}"><a href="{% url 'cart-summary' %}">Enroll<span class="badge badge-light">{{request.user|cart_count}}</span></a></li> -->
+
+                            
+                            {% if user.is_authenticated %}
+                            <li
+                                class="{% if request.resolver_match.url_name == 'register' or  request.resolver_match.url_name == 'login' %} active {% endif %}">
+                                <a href="#">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <img class="rounded-circle account-img mx-auto"
+                                            src="{% static 'automobileapp/img/logo/no_profile.png' %}"
+                                            style="height: 30px;">
+
+                                        <p class="ml-2">{{ user.username }}</p>
+                                    </div>
+                                </a>
+                                {% else %}
+                            <li
+                                class="{% if request.resolver_match.url_name == 'register' or  request.resolver_match.url_name == 'login' %} active {% endif %}">
+                                <a href="#">Account<i class="icofont icofont-simple-down"></i></a>
+                                {% endif %}
+                                <ul>
+
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    <li><a href="{% url 'order-summary' %}">Enrolled Summary</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'register' %}">Ragistration</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="mobile-menu col-12"></div>
+            </div>
+        </div>
+    </div>
+</div>

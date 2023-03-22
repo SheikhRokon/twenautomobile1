@@ -1,0 +1,53 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Category detail</h1>
+                    <ul>
+                        <li><a href="#">home</a></li>
+                        <li><span>Category detail</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="container-fluid">
+            <!-- Gallery Grid -->
+            <div class="blog-wrapper row mb-20">                         
+                <div class="blog-item  col-md-8 col-12 mx-auto">
+                    <div class="text-center text-warning">
+                        <i style="font-size: 100px;" class="icofont {{ course_categorie.categorie_icon_code_To_icofont }}"></i>
+                    </div>
+                    <h3 class="my-4 text-center">{{ course_categorie.title }}</h3>
+                    <div class="description">
+                        <p>{{ course_categorie.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+
+{% endblock content %}

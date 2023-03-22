@@ -1,0 +1,77 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Media Coverage</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>Media Coverage</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid my-3">
+        <div class="card shadow col-md-10 mx-auto">
+            <div class="row">
+                {% for m in mediacover %}
+                {% if m.video_embed_link %}
+                <div class="col-12 col-md-4 my-auto">
+                
+                    <iframe style="height: 250px ; width: 100%;" src="{{m.video_embed_link}}" ></iframe>
+  
+                </div>
+                <div class="col-12 col-md-8 my-auto">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ m.title }}</h5>
+                        </div>
+                        <div class="col-4">
+                            <span>{{ m.date }}</span>
+                        </div>
+                    </div>
+                    <p>{{ m.description|safe }}</p>
+                </div>
+                {% else %}
+                <div class="col-12 col-md-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ m.title }}</h5>
+                        </div>
+                        <div class="col-4">
+                            <span>{{ m.date }}</span>
+                        </div>
+                    </div>
+                    <p>{{ m.description|safe }}</p>
+                </div>
+                {% endif %}
+                
+                {% endfor %}
+            </div>
+        </div>
+      </div>
+
+{% endblock content %}

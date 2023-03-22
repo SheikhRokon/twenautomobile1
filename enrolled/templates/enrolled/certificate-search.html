@@ -1,0 +1,101 @@
+
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    .page-banner-area {
+      background-image: url("{% static 'automobileapp/img/section-bg/auto-b.jpg' %}");
+      background-repeat: no-repeat;
+      background-position: center center;
+      -webkit-background-size: cover ;
+      background-size: cover ;
+       padding: 170px 0 80px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .ms{
+            text-align: center;
+        }
+        .hms{
+            width: 105px;
+        }
+    } 
+        </style>
+    {% endblock style %}
+
+
+{% block content %}
+
+<div class="page-banner-area overlay overlay-black overlay-70">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner text-center col-12">
+                <h1>Certificate Verification</h1>
+                <ul>
+                    <li><a href="{% url 'home' %}">home</a></li>
+                    <li><span>Certificate Verification</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    input{
+  margin-bottom: 40px;
+}
+
+.input-elevated{
+font-size: 16px;
+line-height: 1.5;
+border: none;
+background: #eee0a4;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23838D99' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
+background-repeat: no-repeat;
+background-position: 10px 10px;
+background-size: 20px 20px;
+box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);
+border-radius: 5px;
+width: 300px;
+padding: .5em 1em .5em 2.5em;
+} 
+
+.input-elevated::placeholder{
+  color: #838D99;
+}
+
+.input-elevated:focus {
+  outline: none;
+  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16);
+}
+</style>
+
+<div class="container py-5">
+    <div class="row">
+        
+        <div class="col-md-6">
+            <h5>Search Your Certificate</h5>
+            <form action="{% url 'certificate-search' %}" method="GET">
+                <input class="input-elevated" type="text" placeholder="Search" name="q">
+            </form>
+        </div>
+        <div class="col-md-6">          
+            
+            <h5> Your Search Result</h5>
+            {% if certificate %}
+            <div class="card">
+                <img class="card-img-top" src="" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <p class="card-text">Text</p>
+                </div>
+                
+            </div>
+            {% else %}
+               <p class="text-danger">Not Found</p> 
+            {% endif %}        
+        </div>
+    </div>
+</div>
+{% endblock %}

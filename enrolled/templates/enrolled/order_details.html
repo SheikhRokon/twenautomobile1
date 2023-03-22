@@ -1,0 +1,70 @@
+
+
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+  padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="page-banner-area overlay overlay-black overlay-70">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner text-center col-12">
+                <h1>Enrolled detail</h1>
+                <ul>
+                    <li><a href="{% url 'home' %}">home</a></li>
+                    <li><span>Enrolled-detail</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-md-10 mx-auto my-4">    
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>          
+            {% for cs  in order.cart_items.all %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ cs.course.title }}</td>
+                
+                {% if cs.course.course_discount_price %}
+                <td>{{ cs.course.course_discount_price }}</td>                   
+                {% else %}
+                <td>{{ cs.course.course_price }}</td>
+                {% endif %}       
+              </tr>
+            {% endfor %}
+        </tbody>
+        <tbody>
+            <tr>
+                <td colspan="2"><h3>Total Price</h3></td>
+                <td ><h3>{{ order.get_total }}</h3></td>
+            </tr>
+
+        </tbody>
+      </table>
+ 
+</div>
+
+{% endblock %}

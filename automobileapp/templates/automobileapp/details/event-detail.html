@@ -1,0 +1,58 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Event Detail</h1>
+                    <ul>
+                        <li><a href="#">home</a></li>
+                        <li><span>Event Detail</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid my-3">
+        <div class="card shadow col-md-10 mx-auto">
+            <div class="row">
+                <div class="col-12 col-md-4 my-auto">          
+                    <img src="{{ event.image.url }}" alt="" />
+                </div>
+                <div class="col-12 col-md-8 my-auto">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ event.title }}</h5>
+                        </div>
+                        <div class="col-4">
+                            <span>{{ event.date }}</span>
+                        </div>
+                    </div><hr>
+                    <p>{{ event.mesdescription|safe }}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .page-banner-area {
+	  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  -webkit-background-size: cover ;
+	  background-size: cover ;
+	   padding: 170px 0 80px;
+	}
+	
+    .profile p{
+        color:black;
+    }
+
+    </style>
+
+<div class="page-banner-area overlay overlay-black overlay-70">
+	<div class="container">
+		<div class="row">
+			<div class="page-banner text-center col-12">
+				<h1>Profile</h1>
+				<ul>
+					<li><a href="{% url 'home' %}">home</a></li>
+					<li><span>profile</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+    
+    <div class="container my-4 " style="margin-top: ;">
+        <div class="card col-12 col-md-6  p-2 mx-auto border shadow">
+            <div class="mx-auto">
+            <img class="rounded-circle account-img mx-auto" src="{{ request.user.profile.image.url }}" style="height: 300px;">           
+            </div>
+            <div class="card-body profile">
+                <h5 class="text-center">{{ user.first_name }} {{ user.last_name }}</h5>
+                <div class="row mt-2 mx-auto">
+                    <div class="col-6 ">
+                        <label>Username  </label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.username }}</p>
+                    </div>
+                </div>
+                <div class="row  mx-auto">
+                    <div class="col-6 ">
+                        <label>Email </label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.email }}</p>
+                    </div>
+                </div>
+                <div class="row  mx-auto">
+                    <div class="col-6 ">
+                        <label>Date Of Birthday</label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.profile.date_of_birthday }}</p>
+                    </div>
+                </div>
+                <div class="row  mx-auto">
+                    <div class="col-6 ">
+                        <label>Phone</label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.phone }}</p>
+                    </div>
+                </div>
+                <div class="row  mx-auto">
+                    <div class="col-6 ">
+                        <label>permanent Address</label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.profile.permanent_address }}</p>
+                    </div>
+                </div>
+                <div class="row  mx-auto">
+                    <div class="col-6 ">
+                        <label>Present Address</label>
+                    </div>
+                    <div class="col-6">
+                        <p>: {{ user.profile.present_address }}</p>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-info btn-sm " href="{% url 'profile-update' %}">Update Profile</a>
+            <a class="btn btn-info btn-sm " href="{% url 'password_change' %}">Change Password</a>
+
+        </div>
+    </div>
+    
+{% endblock content %}
+

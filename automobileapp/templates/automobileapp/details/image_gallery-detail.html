@@ -1,0 +1,53 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Image detail</h1>
+                    <ul>
+                        <li><a href="#">home</a></li>
+                        <li><span>Image detail</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="container-fluid">
+            <!-- Gallery Grid -->
+            <div class="blog-wrapper row mb-20">                         
+                <div class="blog-item  col-md-8 col-12 mx-auto">
+                    <div class="text-center">
+                        <img src="{{ image_gallery.image.url }}" alt="" />
+                    </div>
+                    <h3 class="mt-2 text-center">{{ image_gallery.title }}</h3>
+                    <div class="description text-center">
+                        <p>{{ image_gallery.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+
+{% endblock content %}

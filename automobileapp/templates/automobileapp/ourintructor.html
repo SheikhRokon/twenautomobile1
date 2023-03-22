@@ -1,0 +1,74 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/video.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Our Instructor</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>instructor</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="col-12 col-md-10 mx-auto">
+            {% for is in intructor %} 
+            <div class="blog-wrapper row mb-20 shadow">                       
+                <div class="blog-item col-12 col-md-4 my-auto">
+                    <img style="height: 300px ; width: 100%;" src="{{ is.image.url }}" alt="" />
+                    <div class="instructor-social fix my-3">                                 
+                        {% if is.facebook_http_link %}
+                        <a href="{{ is.facebook_http_link }}"><i class="icofont icofont-social-facebook"></i></a>
+                        {% else %}
+                        <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                        {% endif %}
+                        {% if is.linkedin_http_link %}
+                        <a href="{{ is.linkedin_http_link }}"><i class="icofont icofont-social-linkedin"></i></a>
+                        {% else %}
+                        <a href="#"><i class="icofont icofont-social-linkedin"></i></a>
+                        {% endif %}
+                        {% if is.instagram_http_link %}
+                        <a href="{{ is.facebook_http_link }}" title="instagram"><i class="icofont icofont-social-instagram"></i></a>
+                        {% else %}
+                        <a href="#"><i class="icofont icofont-social-instagram"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 my-auto mt-2">
+                    <h5 class="title my-1 text-center"><a href="">{{ is.name }}</a></h5>
+                    <p class="text-center">{{ is.designation }}</p>
+                    <div class="description mb-2" style="margin-top: -10px ;">
+                        <p class="text-center"> {{ is.about_instructor|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+  padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Event</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>event</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="container">
+            <div class="blog-wrapper row mb-20">
+                {% for im in event %}                        
+                <div class="blog-item col-lg-4 col-md-6 col-12">
+                    <div class="card p-2">
+                        <a href="{% url 'event-detals' im.slug %}" class="image">
+                            <img style="width: 100%;" src="{{ im.image.url }}" alt="" />
+                            <i class="icofont icofont-link-alt"></i>
+                        </a>
+                        <h5 class="title my-1 text-center"><a href="{% url 'event-detals' im.slug %}">{{ im.title }}</a></h5>
+                        <p>{{ im.date }}</p>
+                        <div class="description mb-2">
+                            <p class="text-center"> {{ im.mesdescription|truncatechars_html:100|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock content %}

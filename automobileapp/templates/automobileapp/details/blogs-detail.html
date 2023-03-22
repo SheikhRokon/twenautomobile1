@@ -1,0 +1,100 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+{% block fb_meta %}
+<meta property="og:url"           content="https://tweenautoschool.com/blog-details/{{ blogs.slug }}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{ blogs.title }}" />
+<meta property="og:description"   content="{{blogs.description|striptags}}" />
+<meta property="og:image"         content="{{blogs.image.url}}" />
+{% endblock fb_meta %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>blog detail</h1>
+                    <ul>
+                        <li><a href="#">home</a></li>
+                        <li><span>blog detail</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="container-fluid">
+            <!-- Gallery Grid -->
+            <div class="blog-wrapper row mb-20">                         
+                <div class="blog-item  col-md-8 col-12 mx-auto">
+                    <div class="text-center">
+                        <img src="{{ blogs.image.url }}" alt="" />
+                    </div>
+                                <div class="fb-share-button" 
+                                data-href="https://tweenautoschool.com/blog-details/{{ blogs.slug }}" 
+                                data-layout="button_count">
+                                </div>
+                    <h3 class="mt-2 text-center">{{ blogs.title }}</h3>
+                    <p>Posted on :{{ blogs.post_date }}</p>
+                    <div class="description text-center">
+                        <p>{{ blogs.description|safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>Leave a comment:</h3>
+            <form action="" method="post" class="mb-5">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Name</label>
+                    {{ form.author }}
+                </div>
+                <div class="form-group">
+                    <label for="">Message</label>
+                    {{ form.body }}
+                </div>
+                <button type="submit" class="btn bg-info text-white">Submit</button>
+            </form>
+            <h3>Comments:</h3>
+            {% for comment in comments %}
+            <p>
+                On {{comment.created_on.date }}&nbsp;
+                <b>{{ comment.author }}</b> wrote:
+            </p>
+            <p>{{ comment.body }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+    
+  
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+{% endblock content %}

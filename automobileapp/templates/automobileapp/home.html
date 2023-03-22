@@ -1,0 +1,935 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    .course-item {
+        background: rgba(0, 0, 0, 0) url("{% static 'automobileapp/img/shape/course/course-white.png' %}") no-repeat scroll center center;
+        -webkit-background-size: cover;
+        background-size: cover;
+        overflow: hidden;
+        padding: 34px 25px 40px;
+        position: relative;
+        transition: all 1s ease 0s;
+        z-index: 1;
+    }
+
+    .course-item:hover {
+
+        background-image: url("{% static 'automobileapp/img/shape/course/course-color.png' %}");
+        transform: rotate(360deg);
+    }
+
+    .enquiery-container {
+        position: relative;
+
+    }
+
+    .form-control {
+        border-radius: 20px;
+    }
+
+    .enquiery {
+        position: fixed;
+        z-index: 99;
+        bottom: 80px;
+        right: 16px;
+        font-size: 18px;
+    }
+
+    #neonShadow {
+        height: 50px;
+        width: 100px;
+        border: none;
+        border-radius: 50px;
+        transition: 0s;
+        background-color: rgba(156, 161, 160, 0.3);
+        animation: glow 2s infinite;
+        transition: 0s;
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+        }
+
+        50% {
+            box-shadow: 5px 5px 20px rgb(81, 224, 210), -5px -5px 20px rgb(81, 224, 210)
+        }
+
+        100% {
+            box-shadow: 5px 5px 20px rgb(160, 168, 52), -5px -5px 20px rgb(151, 168, 52)
+        }
+    }
+
+
+    .back-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform .4s ease-in;
+        background: linear-gradient(270deg, rgb(48, 30, 43) 0%, rgb(26, 83, 92) 16%, #007bff, rgb(33, 87, 77) 100%);
+        z-index: -1;
+        box-shadow: 0px 0px 112px -41px rgb(48, 30, 43) 0%, 0 -10px 26px -5px rgb(57, 83, 87), 0px 0px 112px -41px #007bff, 0 -10px 26px -5px rgb(0, 254, 207);
+    }
+
+    .thid-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform .4s ease-in;
+        background: linear-gradient(270deg, rgb(48, 30, 43) 0%, rgb(23, 122, 138) 16%, #007bff, rgb(18, 94, 80) 100%);
+        z-index: -1;
+        box-shadow: 0px 0px 112px -41px rgb(48, 30, 43) 0%, 0 -10px 26px -5px rgb(31, 53, 56), 0px 0px 112px -41px #007bff, 0 -10px 26px -5px rgb(0, 254, 207);
+    }
+
+    .single-pricing:hover .back-card {
+        transform: rotate(5deg);
+    }
+
+    .single-pricing:hover .thid-card {
+        transform: rotate(-5deg);
+    }
+</style>
+
+
+{% include 'automobileapp/include/slider.html' %}
+
+
+<div class="enquiery-container">
+    <div class="enquiery" data-toggle="modal" data-target="#exampleModalCenter">
+        <div id="neonShadow" class=" btn-eff rounded-circle"
+            style="height: 120px; width: 120px; background-color:#0c95d4 ;">
+            <h4 class="enquiery-text text-center text-white pt-4">For Enquiry</h4>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3 my-auto">
+                            <img src="{% static 'automobileapp/img/es.jpg' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-9">
+                            <div class="modal-header">
+                                <h5 class="modal-title mx-auto" id="exampleModalLongTitle">For Enquiry</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        {{ for_enquiery_form.full_name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        {{ for_enquiery_form.email }}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        {{ for_enquiery_form.phone }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        {{ for_enquiery_form.place }}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        {{ for_enquiery_form.course_type }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ for_enquiery_form.message }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" style="background-color:#0c95d4 ;color:#fff;">Send
+                        Message</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Course Search Area
+    ============================================ -->
+<div class="cta-area pb-40 pt-40">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="call-to-action text-left col-lg-10 col-12 mx-auto">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <h5 class="text-white">Search Your Courses</h5>
+                        <form action="{% url 'search' %}" method="GET">
+                            <div class="row">
+                                <div class="col-5 col-md-6 text-center">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="q" id="q"
+                                            placeholder="search our course"
+                                            style="height: calc(1.4em + 0.75rem + 2px) !important;">
+                                    </div>
+                                </div>
+                                <div class="col-3 col-md-3 text-center">
+                                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                                </div>
+                                <div class="col-4 col-md-3 text-center">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" style="padding: 0 5px !important">
+                                            Course Type
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                            {% for ct in course_type %}
+                                            <a class="dropdown-item" href="{% url 'course-type' ct.pk %}">{{ ct.title
+                                                }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Course feature Area
+    ============================================ -->
+<div id="pricing-area" class="pricing-area overlay overlay-black overlay-40 pt-90 pb-60">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title title-white text-center col-12 mb-45">
+                <h3 class="heading">Our Course Features</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="row course-slider">
+            {% for cs in course %}
+            <div class="col-lg-3 col-md-6 col-12 mb-30 mx-2" style="width: 284px; height: 450px; overflow: hidden;">
+                <div class="single-pricing text-center">
+                    <div class="pricing-head" style="height: 64px;overflow: hidden;">
+                        <h4>{{ cs.title }}</h4>
+                    </div>
+                    <div class="image mb-1" style="margin-top:-50px ;">
+                        <a href="{% url 'course-detals' cs.slug %}"><img style="height: 180px; width: 100%;"
+                                src="{{ cs.image.url }}" alt="" /></a>
+                    </div>
+
+                    <ul style="color: #fff; margin-bottom: 5px; height: 144px; overflow: hidden;">
+                        {% if cs.course_duration_for_month %}
+                        <li>{{ cs.course_duration_for_month }} Month </li>
+                        {% endif %}
+                        {% if cs.course_duration_for_day %}
+                        <li> Total {{ cs.course_duration_for_day }} Day</li>
+                        {% endif %}
+                        {% if cs.course_duration_for_hours %}
+                        <li>{{ cs.course_duration_for_hours }} Hours </li>
+                        {% endif %}
+
+                        {% if cs.course_discount_price %}
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{
+                            cs.course_discount_price }}</li>
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{
+                                cs.course_price }}</del> </li>
+                        {% else %}
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }}</li>
+                        {% endif %}
+
+                    </ul>
+                    <a href="{% url 'course-detals' cs.slug %}" class="pricing-action">View Details</a>
+                    <div class="back-card"></div>
+                    <div class="thid-card"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: right;">
+            <a class="btn" style="color:black;" href="{% url 'course' %}">View All</a>
+        </div>
+    </div>
+</div>
+
+<!-- Up Comming Course  Area
+    ============================================ -->
+<div id="pricing-area" class="pricing-area overlay overlay-black overlay-40 pt-90 pb-60"
+    style="background-image: url({% static 'automobileapp/img/upimage.jpg'%});">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title title-white text-center col-12 mb-45">
+                <h3 class="heading">Upcomming Courses</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="row course-slider">
+            {% for cs in upcomming_course %}
+            <div class="col-lg-3 col-md-6 col-12 mb-30 mx-2">
+                <div class="single-pricing text-center">
+                    <div class="pricing-head">
+                        <a href="{% url 'upcomming-course-detals' cs.slug %}">
+                            <h4>{{ cs.title }}</h4>
+                        </a>
+                    </div>
+                    <div class="image mb-1" style="margin-top:-50px ;">
+                        <a href="{% url 'upcomming-course-detals' cs.slug %}"><img style="height: 180px; width: 100%;"
+                                src="{{ cs.image.url }}" alt="" /></a>
+                    </div>
+
+                    <ul style="color: #fff; margin-bottom: 5px; height: 144px; overflow: hidden;d ">
+                        {% if cs.course_duration_for_month %}
+                        <li>{{ cs.course_duration_for_month }} Month </li>
+                        {% endif %}
+                        {% if cs.course_duration_for_day %}
+                        <li> Total {{ cs.course_duration_for_day }} Day</li>
+                        {% endif %}
+                        {% if cs.course_duration_for_hours %}
+                        <li>{{ cs.course_duration_for_hours }} Hours </li>
+                        {% endif %}
+
+
+                        {% if cs.course_discount_price %}
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{
+                            cs.course_discount_price }}</li>
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{
+                                cs.course_price }}</del> </li>
+                        {% else %}
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }}</li>
+                        {% endif %}
+                    </ul>
+                    <a href="{% url 'upcomming-course-detals' cs.slug %}" class="pricing-action">View Details</a>
+                    <div class="back-card"></div>
+                    <div class="thid-card"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: right;">
+            <a class="btn" style="color:black;" href="{% url 'upcomming-course' %}">View All</a>
+        </div>
+    </div>
+</div>
+<!-- Course category Area
+    ============================================ -->
+<div id="course-area" class="course-area bg-white pt-90 pb-60">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title text-center col-12 mb-45">
+                <h3 class="heading">Courses category</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <!-- Course Wrapper -->
+        <div class="course-wrapper row">
+            {% for csc in course_categorie %}
+            <div class=" col-12 col-lg-3 col-md-6 mb-30 fix">
+                <div class="course-item text-center">
+                    <a href="{% url 'category-detals' csc.slug %}"><i
+                            class="icofont {{ csc.categorie_icon_code_To_icofont }}"></i></a>
+                    <a href="{% url 'category-detals' csc.slug %}">
+                        <h4>{{ csc.title }}</h4>
+                    </a>
+                    <p>{{ csc.description|truncatechars_html:70|safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<!-- Funfact Area
+    ============================================ -->
+<div class="funfact-area overlay overlay-white overlay-80 pt-90 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
+                <i class="icofont icofont-hat-alt"></i>
+                <h1 class="counter plus">{{ countdown.GRADUTED_FROM_HERE }}</h1>
+                <p>Graduted from here</p>
+            </div>
+            <div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
+                <i class="icofont icofont-user-suited"></i>
+                <h1 class="counter">{{ countdown.NUMBER_OF_INSTRUCTOR }}</h1>
+                <p>Number of Instructor</p>
+            </div>
+            <div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
+                <i class="icofont icofont-history"></i>
+                <h1 class="counter">{{ countdown.YEARS_ON_MARKET }}</h1>
+                <p>Years on market</p>
+            </div>
+            <div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
+                <i class="icofont icofont-users-social"></i>
+                <h1 class="counter plus">{{ countdown.PRESENT_STUDENTS }}</h1>
+                <p>Present students</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- about us -->
+
+<style>
+    .parallax {
+        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("{% static 'automobileapp/img/slider/3.jpg' %}");
+        height: 100%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+<div class="container-fluid py-5 parallax">
+    <div class="section-title text-center col-12 mb-45 text-white">
+        <h3 class="heading text-white">About Us</h3>
+        <div class="excerpt text-white">
+
+        </div>
+        <i class="icofont icofont-traffic-light"></i>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-auto">
+                <h4 class="text-white">TWEEN Automobile School</h4>
+                <p class="text-white">TWEEN Automobile School is the leading Professional Automotive Training institute
+                    in Bangladesh. We are offering multiple ranges of skill development training for the Automobile
+                    Industry, Including Basic Automobile Engineering, Advanced Automobile Engineering, Compute
+                    Diagnosis, and troubleshooting of Vehicle, Hybrid, and Electric Vehicle Technology, Fleet
+                    Management, and Operation. Our Instructors are highly skilled. They have more than six (06) years of
+                    experience in the Automobile Industry. They are especially experts in Mitsubishi, Suzuki, Mahindra,
+                    ISUZU, Swaraj-Mazda, and SMLI.</p>
+                <a class="btn btn-sm btn-outline-warning" href="{% url 'about' %}">See More</a>
+            </div>
+            <div class="col-md-6 mt-3">
+                <iframe class="col-12" style="width: 100%;"
+                    src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Ftweenautoschool%2Fvideos%2F273994121476575%2F&show_text=false&width=560&t=0"
+                    height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Why you work with us
+    ============================================ -->
+<div id="feature-area" class="feature-area bg-gray pt-90 pb-90">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title text-center col-12 mb-45">
+                <h3 class="heading">Why Choose Us?</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Left Feature -->
+            <div class="feature-wrapper feature-left text-right col-lg-4 col-12">
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-businessman"></i></i></div>
+                    <div class="text fix">
+                        <h4>Expert Instructors</h4>
+                        <p>Teaching experience achievement gains thought-out an instructor’s career.
+                            Our instructors are based on industry-academia. </p>
+                    </div>
+                </div>
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-tools-alt-2"></i></div>
+                    <div class="text fix">
+                        <h4>Teach About Systems</h4>
+                        <p>If you want to be a diagnosis expert you have to know deeply about each system of the
+                            vehicle.</p>
+                    </div>
+                </div>
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-olympic-logo"></i></div>
+                    <div class="text fix">
+                        <h4>Logical Diagnosis</h4>
+                        <p>After getting the knowledge of each system you will be able to think logical diagnosis to
+                            find the problem and route cause of the problem. </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature Image -->
+            <div class="feature-image text-center col-lg-4 col-12">
+                <img src="{% static 'automobileapp/img/feature.png' %}" style="height:370px; width:570px;"
+                    alt="feature" />
+            </div>
+            <!-- Right Feature -->
+            <div class="feature-wrapper feature-right text-left col-lg-4 col-12">
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-brainstorming"></i></div>
+                    <div class="text fix">
+                        <h4>Physical Inspection</h4>
+                        <p> According to your logical diagnosis thinking during you will check the system step by step
+                            you will be able to find out the problem and solve the problem.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-road"></i></div>
+                    <div class="text fix">
+                        <h4>Learning Roads</h4>
+                        <p> According to our planning we have taken a lot of Strategies to make diagnosis experts.</p>
+                    </div>
+                </div>
+                <div class="single-feature">
+                    <div class="icon"><i class="icofont icofont-street-view"></i></div>
+                    <div class="text fix">
+                        <h4>Job Opportunity</h4>
+                        <p>You will be able to keep your position in the competitive job market after taking our course.
+                            Also, we will refer you to a reputed automobile company for your desired job.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Our partner
+============================================ -->
+<style>
+    .alh2 h2:hover {
+        text-decoration: underline;
+        text-decoration-color: blue;
+    }
+
+    .prt:hover {
+        margin-top: -5px;
+        transition: 0.2s;
+    }
+</style>
+<div class="container-fluid mt-1 py-5 alh2 bg-light">
+    <div class="section-title text-center col-12 mb-45">
+        <h3 class="heading"> Our Partners</h3>
+        <div class="excerpt">
+
+        </div>
+        <i class="icofont icofont-traffic-light"></i>
+    </div>
+    <div class="row mt-5 partner-slider ">
+        {% for op in our_partner %}
+        <div class='col-md-4 col-lg-3'>
+            <div class="card shadow prt mx-1 rounded-end">
+                <img src="{{ op.image.url }}" style='height: 150px;' alt="" />
+                <div class="card-body">
+                    <p>{{ op.title }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Testimonial Area
+============================================ -->
+<div id="testimonial-area" class="testimonial-area overlay overlay-white overlay-80 text-center pt-90 pb-90">
+    <div class="container">
+        <div class="section-title text-center col-12 mb-45">
+            <h3 class="heading ">Testimonial</h3>
+            <div class="excerpt">
+
+            </div>
+            <i class="icofont icofont-traffic-light"></i>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-8 mx-auto">
+                <!-- Testimonial Image Slider -->
+                <div class="ti-slider mb-40">
+                    {% for ts in testimonial %}
+                    <div class="single-slide">
+                        <div class="image fix"><img src="{{ ts.image.url }}" alt="" /></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Testimonial Content Slider -->
+                <div class="tc-slider">
+                    {% for ts in testimonial %}
+                    <div class="single-slide">
+                        <p>{{ ts.description|truncatechars_html:200|safe }}</p>
+                        <h5>{{ ts.name }}</h5>
+                        <span>{{ ts.designation }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider Arrows -->
+    <button class="ts-arrows ts-prev"><i class="icofont icofont-caret-left"></i></button>
+    <button class="ts-arrows ts-next"><i class="icofont icofont-caret-right"></i></button>
+</div>
+
+<!-- Instructor Area
+============================================ -->
+<div id="instructor-area" class="instructor-area bg-white pt-90 pb-60">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title text-center col-12 mb-45">
+                <h3 class="heading">Instructor</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-12 mx-auto">
+                <!-- Instructor Tab Content -->
+                <div class="tab-content">
+
+                    {% for is in intructor %}
+                    {% if forloop.counter == 1 %}
+                    <div class="tab-pane fade show active" id="instructor-{{forloop.counter}}">
+                        {% else %}
+                        <div class="tab-pane fade" id="instructor-{{forloop.counter}}">
+                            {% endif %}
+                            <div class="row">
+                                <div class="instructor-details text-left col-lg-7 col-12">
+                                    <h4 class="instructor-name">{{ is.name }}</h4>
+                                    <h5 class="instructor-title">{{ is.designation }}</h5>
+                                    <p>{{ is.about_instructor|truncatechars_html:750|safe }}<a class="text-warning"
+                                            href="{% url 'instructor' %}">Read more</a></p>
+                                    <div class="instructor-social fix">
+                                        {% if is.facebook_http_link %}
+                                        <a href="{{ is.facebook_http_link }}"><i
+                                                class="icofont icofont-social-facebook"></i></a>
+                                        {% else %}
+                                        <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                                        {% endif %}
+                                        {% if is.linkedin_http_link %}
+                                        <a href="{{ is.linkedin_http_link }}"><i
+                                                class="icofont icofont-social-linkedin"></i></a>
+                                        {% else %}
+                                        <a href="#"><i class="icofont icofont-social-linkedin"></i></a>
+                                        {% endif %}
+                                        {% if is.instagram_http_link %}
+                                        <a href="{{ is.instagram_http_link }}" title="instagram"><i
+                                                class="icofont icofont-social-instagram"></i></a>
+                                        {% else %}
+                                        <a href="#"><i class="icofont icofont-social-instagram"></i></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="instructor-image col-lg-5 col-md-6 col-12">
+                                    <img src="{{ is.image.url }}" alt="" />
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Instructor Tab List -->
+                    <ul class="nav instructor-tab-list fix">
+                        {% for is in intructor %}
+                        <li><a href="#instructor-{{forloop.counter}}" data-toggle="tab"><img
+                                    style="height: 130px;width: 130px;" src="{{ is.image.url }}" alt="" />{{ is.name
+                                }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: right;">
+            <a class="btn" style="color:black;" href="{% url 'instructor' %}">View All</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- FAQ Area
+============================================ -->
+<div id="faq-area" class="faq-area bg-white pt-50 pb-60">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title text-center col-12 mb-45">
+                <h3 class="heading">Frequently asked questions</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="panel-group" id="faq">
+                    {% for f in fas %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a data-toggle="collapse" aria-expanded="true"
+                                    href="#faq-{{forloop.counter}}">{{ f.question }}</a></h4>
+                        </div>
+                        <div id="faq-{{forloop.counter}}" class="panel-collapse collapse" data-parent="#faq">
+                            <div class="panel-body">
+                                <p>{{ f.answer|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="faq-image col-lg-6 col-12">
+                <img src="{% static 'automobileapp/img/faq.png' %}" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- certificate
+    ============================================ -->
+<style>
+    .crt:hover {
+        margin-top: -5px;
+        transition: 0.2s;
+    }
+
+    .th2 h2:hover {
+        text-decoration: underline;
+        text-decoration-color: white;
+        transition-duration: 0.25s;
+        transition-delay: 0s;
+    }
+
+    .pcp p:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+        transition-duration: 0.25s;
+        transition-delay: 0s;
+    }
+</style>
+<div class="container mt-1 py-5  th2 pcp">
+    <div class="section-title text-center col-12 mb-45">
+        <h3 class="heading">Certificate</h3>
+        <div class="excerpt">
+
+        </div>
+        <i class="icofont icofont-traffic-light"></i>
+    </div>
+    <div class="row">
+        {% for c in certificates %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card crt shadow-lg ">
+                <img src="{{ c.image.url }}" alt="">
+                <div class="card-body">
+                    <p class="text-center text-info font-weight-bold font-size-13px  ">{{ c.title }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+    </div>
+</div>
+
+<!-- Our Alumnus working With
+============================================ -->
+<style>
+    .alh2 h2:hover {
+        text-decoration: underline;
+        text-decoration-color: blue;
+    }
+
+    .prt:hover {
+        margin-top: -5px;
+        transition: 0.2s;
+    }
+</style>
+<div class="container-fluid mt-1 py-5 alh2 ">
+    <div class="section-title text-center col-12 mb-45">
+        <h3 class="heading"> Our Alumnus working With</h3>
+        <div class="excerpt">
+
+        </div>
+        <i class="icofont icofont-traffic-light"></i>
+    </div>
+    <div class="mt-5 alumnus-slider">
+        {% for oa in ourAlumnus %}
+        <div class='col-md-6'>
+            <div class="card shadow prt mx-1">
+                <img src="{{ oa.image.url }}" style='height:200px' alt="" />
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Gallery Area
+============================================ -->
+<div id="gallery-area" class="gallery-area bg-gray pt-90 pb-60">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="row">
+            <div class="section-title text-center col-12 mb-45">
+                <h3 class="heading">golden gallery</h3>
+                <div class="excerpt">
+
+                </div>
+                <i class="icofont icofont-traffic-light"></i>
+            </div>
+        </div>
+        <div class="container ">
+            <div class="gl">
+                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                    <li class="nav-item text-center">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Image</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Video</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content mt-4" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row imagegellery-slider">
+                    {% for img in imagegallery %}
+                    <div class="gallery-item image col-lg-3 col-md-4 col-12 mx-2">
+                        <a href="{% url 'image-gallery-detals'  img.slug %}">
+                            <img src="{{ img.image.url }}" alt="" />
+                            <div class="content">
+                                <p>{{ img.title }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                    {% for vg in videoGallery %}
+                    <div class="gallery-item videos col-lg-3 col-md-4 col-12 mx-2">
+                        <iframe height="185" src="{{vg.video_embed_link}}" allowfullscreen></iframe>
+                        <div class="content">
+                            <p>{{ vg.title }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div style="text-align: right;">
+                    <a class="btn" style="color:black;" href="{% url 'video-gallery' %}">View All</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Blog Area
+============================================ -->
+<div class="blog-area bg-white pt-90 pb-90">
+    <div class="container">
+        <div class="section-title text-center col-12 mb-45">
+            <h3 class="heading">Blogs</h3>
+            <div class="excerpt">
+
+            </div>
+            <i class="icofont icofont-traffic-light"></i>
+        </div>
+        <!-- Gallery Grid -->
+        <div class="blog-wrapper row mb-20">
+
+            {% for b in blogs %}
+            <div class="blog-item col-lg-3 col-md-4 col-12">
+                <a href="{% url 'blog-detals' b.pk %}" class="image">
+                    <img src="{{ b.image.url }}" alt="" />
+                    <i class="icofont icofont-link-alt"></i>
+                </a>
+                <h5 class="title my-1"><a href="{% url 'blog-detals' b.pk %}">{{ b.title }}</a></h5>
+                <p>Posted on : {{ b.post_date }}</p>
+                <div class="description">
+                    <p>{{ b.description|truncatechars_html:200|safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+        <div style="text-align: right;">
+            <a class="btn" style="color:black;" href="{% url 'blogs' %}">View All</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- NewsLetter Area
+    ============================================ -->
+<div class="cta-area pb-40 pt-40">
+    <div class="container">
+        <div class="row">
+            <div class="call-to-action text-left col-lg-10 col-12 mx-auto">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4 class="text-white">Newsletter</h4>
+                        </div>
+                        <div class="col-8 col-md-6 text-center">
+                            <div class="form-group">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-3 text-center">
+                            <button class="btn btn-outline-warning">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

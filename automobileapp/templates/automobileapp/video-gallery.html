@@ -1,0 +1,51 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Video Gallery</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>video-gallery</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-area bg-white pt-90 pb-90">
+        <div class="container">
+            <div class="blog-wrapper row mb-20">
+                {% for vg in video_gallery %}                        
+                <div class="blog-item col-lg-3 col-md-4 col-12">
+                            <iframe src="{{vg.video_embed_link}}" allowfullscreen ></iframe>
+                        <h5 class="title my-1 text-center"><a href="">{{ vg.title }}</a></h5>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+@media only screen and (max-width: 600px) {
+    .ms{
+        text-align: center;
+    }
+    .hms{
+        width: 105px;
+    }
+} 
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Privacy Policy</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>Privacy-Policy</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid my-3">
+        <p>This page under construction zone</p>
+   </div>
+
+    
+
+{% endblock content %}

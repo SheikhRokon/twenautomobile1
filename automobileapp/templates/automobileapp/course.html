@@ -1,0 +1,112 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+.back-card{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        height: 100%;
+        transition: transform .4s ease-in;
+        background: linear-gradient(270deg, rgb(48, 30, 43) 0%, rgb(26, 83, 92) 16%, #007bff, rgb(33, 87, 77) 100%);
+        z-index: -1;
+        box-shadow: 0px 0px 112px -41px rgb(48, 30, 43) 0%, 0 -10px 26px -5px rgb(57, 83, 87),0px 0px 112px -41px #007bff , 0 -10px 26px -5px rgb(0, 254, 207);
+        }
+        .thid-card{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        height: 100%;
+        transition: transform .4s ease-in;
+        background: linear-gradient(270deg, rgb(48, 30, 43) 0%, rgb(23, 122, 138) 16%, #007bff, rgb(18, 94, 80) 100%);
+        z-index: -1;
+        box-shadow: 0px 0px 112px -41px rgb(48, 30, 43) 0%, 0 -10px 26px -5px rgb(31, 53, 56),0px 0px 112px -41px #007bff , 0 -10px 26px -5px rgb(0, 254, 207);
+        }
+
+        .single-pricing:hover .back-card{
+        transform: rotate(5deg);
+        }
+        .single-pricing:hover .thid-card{
+        transform: rotate(-5deg);
+        }
+
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Our Course Features</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>course</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="pricing-area" >
+        <div class="container mt-5">
+            <div class="row">
+                {% for cs in course %}
+                <div class="col-lg-3 col-md-6 col-12 mb-30">
+                    <div class="single-pricing text-center">
+                        <div class="pricing-head">
+                            <h4>{{ cs.title }}</h4>
+                        </div>
+                        <div class="image mb-1" style="margin-top:-50px ;">
+                            <a href="{% url 'course-detals' cs.slug %}"><img style="height: 180px; width: 100%;" src="{{ cs.image.url }}" alt="" /></a>
+                        </div>
+
+                        <ul style="color: #fff; margin-bottom: 5px;">
+                            {% if cs.course_duration_for_month %}
+                            <li>{{ cs.course_duration_for_month }} Month </li>                               
+                            {% endif %}
+                            {% if cs.course_duration_for_day %}
+                            <li> Total  {{ cs.course_duration_for_day }} Day</li>                               
+                            {% endif %}
+                            {% if cs.course_duration_for_hours %}
+                            <li>{{ cs.course_duration_for_hours }} Hours </li>                               
+                            {% endif %}
+                            {% if cs.course_discount_price %}
+                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{ cs.course_discount_price }}</li>                               
+                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{ cs.course_price }}</del> </li>                               
+                            {% else %}
+                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }}</li>                               
+                            {% endif %}  
+                        </ul>
+                        <a href="{% url 'course-detals' cs.slug %}" class="pricing-action">View Details</a>
+                        <div class="back-card"></div>
+                        <div class="thid-card"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+  
+
+{% endblock content %}

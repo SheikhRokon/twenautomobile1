@@ -1,0 +1,57 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+	{% block style %}
+    <style>
+        .page-banner-area {
+          background-image: url("{% static 'userapp/image/auto-b2.jpg' %}");
+          background-repeat: no-repeat;
+          background-position: center center;
+          -webkit-background-size: cover ;
+          background-size: cover ;
+           padding: 170px 0 80px;
+        }
+        .container{
+            color: #293402;
+        }
+        .btn{
+            background: linear-gradient(8deg, #e9d202 0%, #dff142 100%);
+        }
+        .card-body{
+            font-weight: 400;
+            font-size: 20px;
+        }
+    </style>
+	{% endblock style %}
+
+{% block content %}
+<div class="page-banner-area overlay overlay-black overlay-70">
+	<div class="container">
+		<div class="row">
+			<div class="page-banner text-center col-12">
+				<h1>Career</h1>
+				<ul>
+					<li><a href="{% url 'home' %}">home</a></li>
+					<li><span>career</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+    <div class="container my-4"> 
+        {% for c in careers %}
+        <div class="card  col-12 col-md-7 mx-auto shadow text-center py-4">
+            <h3>{{ c.title }}</h3>
+            <div class="card-body text-center">
+                <p>Salary : {{ c.salary }}</p>
+                <p>Experience : {{ c.experience }}</p>
+                <p>Apply Dateline : {{ c.date }} <br> To {{ c.end_date }}</p>
+                <a class="btn btn-warning" href="{% url 'career-detail' c.slug %}">Show details and Apply</a>
+            </div>
+        </div>
+        {% endfor %}
+            
+    </div>
+{% endblock content %}
+    

@@ -1,0 +1,65 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+	{% block style %}
+    <style>
+        .page-banner-area {
+          background-image: url("{% static 'userapp/image/auto-b2.jpg' %}");
+          background-repeat: no-repeat;
+          background-position: center center;
+          -webkit-background-size: cover ;
+          background-size: cover ;
+          padding: 270px 0 150px;
+        }
+        @media only screen and (max-width: 600px) {
+            .lt{
+                margin-top: -200px;
+            }
+        }
+        @media only screen and (min-width: 600px) {
+            .lt{
+                margin-top: -100px;
+            }
+        }
+    </style>
+	{% endblock style %}
+
+{% block content %}
+<div class="page-banner-area overlay overlay-black overlay-70">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="page-banner text-center col-12">
+                <div class="container-fluid lt">
+                    <div class="row">
+                      <div class="col-12 col-md-4 mx-auto ">
+                        <div class="card   shadow">
+                          <h5 class=" p-3 text-light bg-info text-center mb-4">LOGIN</h5>
+                          <form class="my-2 px-3" action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{form|crispy}}
+                            </div>
+                            <div class="text-center">
+                            <button class="btn  btn-sm my-2 col-12 bg-info text-white">Log In</button>
+                            </div>
+                        </form>
+                        <div class="text-center pb-4">
+                          <a  href="{% url 'register' %}" > you have no account? registration now </a>
+                        </div>
+                        <div class="text-center pb-4">
+                          <a  href="{% url 'password_reset' %}" > forget password </a>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    </div>
+                                    
+			      </div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}
+    

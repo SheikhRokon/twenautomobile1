@@ -1,0 +1,57 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+  padding: 170px 0 80px;
+}
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>About Us</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>about-us</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+        <div class="container">
+            <div class='card shadow my-5'>
+                <p class='p-3'> TWEEN Automobile School is the leading Professional Automotive Training institute in Bangladesh.
+                We are offering multiple ranges of skill development training for the Automobile Industry,
+                Including Basic Automobile Engineering, Advanced Automobile Engineering, Compute Diagnosis, 
+                and troubleshooting of Vehicle, Hybrid, and Electric Vehicle Technology, Fleet Management,
+                and Operation. Our Instructors are highly skilled. They have more than six (06) years of experience in the Automobile Industry.
+                They are especially experts in Mitsubishi, Suzuki, Mahindra, ISUZU, Swaraj-Mazda, and SMLI.</p>
+            </div>
+        </div>
+
+
+
+
+
+  
+
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+	.page-banner-area {
+	  background-image: url("{% static 'automobileapp/img/section-bg/funfact.jpg' %}");
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  -webkit-background-size: cover ;
+	  background-size: cover ;
+	  padding: 270px 0 150px;
+	}
+	
+		</style>
+		
+<!-- Contatc Area
+============================================ -->
+<div class="page-banner-area overlay overlay-black overlay-70">
+	<div class="container">
+		<div class="row">
+			<div class="page-banner text-center col-12">
+				<h1>Logout</h1>
+				<ul>
+					<li><a href="{% url 'home' %}">home</a></li>
+					<li><span>logout</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="contact-area" class="contact-area bg-gray">
+	<div class="container pb-90 pt-90">
+		<!-- Section Title -->
+        <div class="section-title text-center col-12 mb-45">
+            <h3 class="heading">Yor are now Logged Out</h3>
+            <div class="excerpt">
+                
+                <a class="btn" href="{% url 'login' %}">Again Longin</a>
+            </div>
+            <i class="icofont icofont-traffic-light"></i>
+        </div>
+
+	</div>
+</div>
+{% endblock content %}
+
+

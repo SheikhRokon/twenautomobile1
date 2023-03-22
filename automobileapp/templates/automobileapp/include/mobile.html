@@ -1,0 +1,36 @@
+
+<style>
+    @media (min-width: 1080px) {
+	.find-course-form-mobile {
+        display: none;
+	}
+}
+@media (max-width: 1080px) {
+    .fdc{
+    background-color: transparent;
+    color: white;
+    margin-left: 15px;
+    margin-top: -5px;
+}
+}
+
+</style>
+
+<div class="container my-5" >
+    <div class="card">
+        <div class="find-course-form-mobile float-right text-right  wow fadeInUp" data-wow-duration=".9s" data-wow-delay="3s">
+            <h5><span >choose your course</span><i style="color: white;" class="icofont icofont-police-car"></i></h5>
+            <form  method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="course-input"><i class="icofont icofont-user-alt-3"></i> {{ course_find_form.name }}</div>
+                <div class="course-input"><i class="icofont icofont-envelope"></i> {{ course_find_form.email }}</div>
+                <div class="course-input"><i class="icofont icofont-phone"></i>{{ course_find_form.phone }}</div>
+                <div class="course-input"><i class="icofont icofont-clock-time"></i>{{ course_find_form.time }}</div>
+                <div class="course-input course-date"><i class="icofont icofont-calendar"></i>{{ course_find_form.date }}</div>
+                <div class="course-input"><i class="icofont icofont-copy-alt"></i> {{ course_find_form.course_type }}</div> 
+                <div class="course-input"><i class="icofont icofont-car-alt-4"></i> {{ course_find_form.car_type }}</div>
+                <div class="course-submit"><input type="submit" value="Apply" /></div>
+            </form>
+        </div>
+    </div>
+</div>

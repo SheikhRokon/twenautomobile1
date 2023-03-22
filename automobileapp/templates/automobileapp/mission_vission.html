@@ -1,0 +1,63 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/auto-b.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+@media only screen and (max-width: 600px) {
+    .ms{
+        text-align: center;
+    }
+    .hms{
+        width: 105px;
+    }
+} 
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Mission And Vission</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>mission vission</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="container-fluid my-3">
+    {% for mv in mission_vission %}
+    <div class="card shadow col-md-10 mx-auto">
+        <div class="card-body">
+            <h4 >Mission</h4><hr>
+            <p>{{ mv.mission|safe }}</p>
+        </div>
+        <div class="card-body">
+            <h4>Vission</h4><hr>
+            <p>{{ mv.vission|safe }}</p>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+{% endblock content %}

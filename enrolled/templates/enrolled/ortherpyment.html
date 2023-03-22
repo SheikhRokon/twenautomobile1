@@ -1,0 +1,116 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
+
+<style>
+    .page-banner-area {
+        background-image: url("{% static 'automobileapp/img/section-bg/testimonial.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-size: cover;
+        background-size: cover;
+        padding: 170px 0 80px;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="page-banner-area overlay overlay-black overlay-70">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner text-center col-12">
+                <h1>Payment Form</h1>
+                <ul>
+                    <li><a href="{% url 'home' %}">home</a></li>
+                    <li><span>Others Payments</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="checkout-title">Payment Information</h2><!-- End .checkout-title -->
+
+                {{ form|crispy }}
+
+                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                    <span class="btn bg-info text-white btn-info">Place Order</span>
+                </button>
+            </div><!-- End .col-lg-9 -->
+
+
+           
+        </div><!-- End .row -->
+    </form>
+
+</div>
+
+<script>
+  var paymentID = '';
+  bKash.init({
+    paymentMode: 'checkout', //fixed value ‘checkout’ 
+    //paymentRequest format: {amount: AMOUNT, intent: INTENT} 
+    //intent options 
+    //1) ‘sale’ – immediate transaction (2 API calls) 
+    //2) ‘authorization’ – deferred transaction (3 API calls) 
+    paymentRequest: {
+      amount: '100.50', //max two decimal points allowed 
+      intent: 'sale'
+    },
+    createRequest: function (request) { //request object is basically the paymentRequest object, automatically pushed by the script in createRequest method 
+      $.ajax({
+        url: "{% url 'create_bkash_payment' %}",
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(request),
+        success: function (data) {
+          if (data && data.paymentID != null) {
+            paymentID = data.paymentID;
+            bKash.create().onSuccess(data.bkashURL); //pass the whole response data in bKash.create().onSucess() method as a parameter 
+          } else {
+            bKash.create().onError();
+          }
+        },
+        error: function () {
+          bKash.create().onError();
+        }
+      });
+    },
+    executeRequestOnAuthorization: function () {
+      $.ajax({
+        url: '{% url "execute_bkash_payment" %}',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          "paymentID": paymentID
+        }),
+        success: function (data) {
+          if (data && data.paymentID != null) {
+            window.location.href = "success.html";//Merchant’s success page 
+          } else {
+            bKash.execute().onError();
+          }
+        },
+        error: function () {
+          bKash.execute().onError();
+        }
+      });
+    }
+  });
+
+</script> -->
+
+
+{% endblock %}

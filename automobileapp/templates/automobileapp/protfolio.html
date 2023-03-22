@@ -1,0 +1,56 @@
+{% extends 'automobileapp/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+.page-banner-area {
+  background-image: url("{% static 'automobileapp/img/section-bg/auto-b.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover ;
+  background-size: cover ;
+   padding: 170px 0 80px;
+}
+
+@media only screen and (max-width: 600px) {
+    .ms{
+        text-align: center;
+    }
+    .hms{
+        width: 105px;
+    }
+} 
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+
+    <!-- Course feature Area
+    ============================================ -->
+    <div class="page-banner-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner text-center col-12">
+                    <h1>Protfolio</h1>
+                    <ul>
+                        <li><a href="{% url 'home' %}">home</a></li>
+                        <li><span>protfolio</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="container-fluid my-3">
+    <div class="card shadow col-md-10 mx-auto">
+        <div class="card-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis quas tenetur, voluptatum quos illo nesciunt adipisci illum cum odio praesentium dolor, nisi officia, maxime iusto veniam necessitatibus at ipsa. Quam?</p>
+        </div>
+    </div>
+  </div>
+
+
+
+{% endblock content %}
