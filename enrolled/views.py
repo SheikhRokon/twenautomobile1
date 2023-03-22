@@ -300,16 +300,16 @@ def execute_bkash_payment(request):
 
     response_create = requests.post(url, json=payload, headers=headers)
     response = json.loads(response_create.content)
-    print(response,"exicute response")
+    print(response,"execute response")
 
+    if response.get("statusCode") == "0000" and response.get("statusMessage") == "Successful":
+        trxID=response.get('trxID')
+        print(trxID)
+        paymentID=response.get('paymentID')
+        print(paymentID)
 
-    if response.get('errorCode') and response.get('errorCode') != '0000':
-        text = response.get('errorMessage')
-        messages.error(request, f"{text}")    
-    else:
         paymentID=response.get('paymentID')
         createTime=response.get('paymentExecuteTime')
-        updateTime = response.get('updateTime')
         trxID = response.get('trxID')
         transactionStatus = response.get('transactionStatus')
         amount = response.get('amount')
@@ -318,8 +318,7 @@ def execute_bkash_payment(request):
         merchantInvoiceNumber = response.get('merchantInvoiceNumber')
         customerMsisdn = response.get('customerMsisdn')
 
-        BkashPaymentExecute.objects.create(user=request.user, paymentID=paymentID, createTime=createTime, updateTime=updateTime, trxID=trxID, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, customerMsisdn=customerMsisdn)
-
+        BkashPaymentExecute.objects.create(user=request.user, paymentID=paymentID, createTime=createTime, trxID=trxID, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, customerMsisdn=customerMsisdn)
         order_qs = Order.objects.filter(user=request.user, ordered=False)
         order = order_qs[0]
         order.ordered = True
@@ -332,12 +331,11 @@ def execute_bkash_payment(request):
             order_item.save()
 
         order.save()
-        
         messages.success(request, "Your Payment successful done")
-
-    return JsonResponse(response)
-
-    return render(request,"enrolled/payment.html")
+        return redirect("/")
+    else:
+        messages.success(request, "Your Payment Failed")
+        return redirect("/")
 
 
 

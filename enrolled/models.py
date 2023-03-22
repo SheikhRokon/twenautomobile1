@@ -136,7 +136,6 @@ class BkashPaymentExecute(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True , null=True)
     paymentID = models.CharField(max_length=150)
     createTime = models.CharField(max_length=150)
-    updateTime = models.CharField(max_length=150)
     trxID = models.CharField(max_length=150)
     transactionStatus = models.CharField(max_length=150)
     amount = models.CharField(max_length=150)
