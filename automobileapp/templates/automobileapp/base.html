@@ -2,48 +2,49 @@
 <html class="no-js" lang="en">
 
 <!-- Mirrored from preview.hasthemes.com/driveon-preview-v1/driveon-light/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 28 May 2022 09:15:30 GMT -->
+
 <head>
-     <!-- whatsapp Chat plugin Code -->
-     
-  <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-        <script>
-          var wa_btnSetting = {"btnColor":"#16BE45","ctaText":"","cornerRadius":50,"marginBottom":40,"marginLeft":20,"marginRight":20,"btnPosition":"left","whatsAppNumber":"+8801737158996","welcomeMessage":"how may i help you?","zIndex":999999,"btnColorScheme":"light"};
-          window.onload = () => {
-            _waEmbed(wa_btnSetting);
-          };
-        </script>
-      
-    <!-- Messenger Chat plugin Code -->
-    <div id="fb-root"></div>
+	<!-- whatsapp Chat plugin Code -->
 
-    <!-- Your Chat plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
+	<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+	<script>
+		var wa_btnSetting = { "btnColor": "#16BE45", "ctaText": "", "cornerRadius": 50, "marginBottom": 40, "marginLeft": 20, "marginRight": 20, "btnPosition": "left", "whatsAppNumber": "+8801737158996", "welcomeMessage": "how may i help you?", "zIndex": 999999, "btnColorScheme": "light" };
+		window.onload = () => {
+			_waEmbed(wa_btnSetting);
+		};
+	</script>
 
-    <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "165112330711725");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
 
-    <!-- Your SDK code -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v14.0'
-        });
-      };
+	<!-- Your Chat plugin code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
-    
+	<script>
+		var chatbox = document.getElementById('fb-customer-chat');
+		chatbox.setAttribute("page_id", "165112330711725");
+		chatbox.setAttribute("attribution", "biz_inbox");
+	</script>
+
+	<!-- Your SDK code -->
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				xfbml: true,
+				version: 'v14.0'
+			});
+		};
+
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
 	{% load static %}
 
 	<meta charset="utf-8">
@@ -51,10 +52,10 @@
 	<title>Home || TWEEN Automobile</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	 {% block fb_meta %}
-    {% endblock fb_meta %}
+	{% block fb_meta %}
+	{% endblock fb_meta %}
 	<!-- Favicon -->
-	 <link rel="icon" type="image/x-icon" href="{% static 'automobileapp/img/icon.jpg' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'automobileapp/img/icon.jpg' %}">
 	<!-- Fonts -->
 	<link href="{% static 'automobileapp/fonts/lato/lato.css' %}" rel="stylesheet">
 	<!-- CSS -->
@@ -78,279 +79,297 @@
 	<!-- Responsive CSS
 	============================================ -->
 	<link rel="stylesheet" href="{% static 'automobileapp/css/responsive.css' %}">
-    <!-- Style customizer (Remove these two lines please) -->
-    <link rel="stylesheet" href="{% static 'automobileapp/css/style-customizer.css' %}">
-    <link href="#" data-style="styles" rel="stylesheet">
+	<!-- Style customizer (Remove these two lines please) -->
+	<link rel="stylesheet" href="{% static 'automobileapp/css/style-customizer.css' %}">
+	<link href="#" data-style="styles" rel="stylesheet">
 	<!-- Modernizer JS
 	============================================ -->
 	<script src="{% static 'automobileapp/js/vendor/modernizr-2.8.3.min.js' %}"></script>
+	
+	<!-- Our project just needs Font Awesome Free's Solid and Brand files -->
+	<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 
 	{% block style %}
-	  
+
 	{% endblock style %}
-	
+
 </head>
+
 <body>
-<!-- Body main wrapper start -->
-<div class="wrapper fix">
-{% include 'automobileapp/include/navbar.html' %}
+	<!-- Body main wrapper start -->
+	<div class="wrapper fix">
+		{% include 'automobileapp/include/navbar.html' %}
 
-{% block content %}
-  
-{% endblock content %}
-</div>
+		{% block content %}
 
-<!-- Footer Area
+		{% endblock content %}
+	</div>
+
+	<!-- Footer Area
 ============================================ -->
-<div class="footer-area overlay overlay-black overlay-70 pt-90">
-	<div class="container">
-		<div class="row">
-			<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
-			 <a href="" class="logo navbar-brand"><img src="{% static 'automobileapp/img/logo/icon1.jpg' %}" alt="" ></a>
-				<div class="about-widget">
-					<p>TWEEN Automobile School is the leading Professional Automotive Training institute in Bangladesh. We are offering multiple ranges of skill development training for the Automobile Industry,
-					...<a href="{% url 'about' %}">See More</a></p>
-					<div class="widget-social fix">
-						<a href="https://www.facebook.com/tweenautoschool"><i class="icofont icofont-social-facebook"></i></a>
-						<a href="https://www.linkedin.com/company/twwen-automobile-school/"><i class="icofont icofont-social-linkedin"></i></a>
-						<a href="#"><i class="icofont icofont-social-instagram"></i></a>
+	<div class="footer-area overlay overlay-black overlay-70 pt-90">
+		<div class="container">
+			<div class="row">
+				<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
+					<a href="" class="logo navbar-brand"><img src="{% static 'automobileapp/img/logo/icon1.jpg' %}"
+							alt=""></a>
+					<div class="about-widget">
+						<p>TWEEN Automobile School is the leading Professional Automotive Training institute in
+							Bangladesh. We are offering multiple ranges of skill development training for the Automobile
+							Industry,
+							...<a href="{% url 'about' %}">See More</a></p>
+						<div class="widget-social fix">
+							<a href="https://www.facebook.com/tweenautoschool"><i
+									class="icofont icofont-social-facebook"></i></a>
+							<a href="https://www.linkedin.com/company/twwen-automobile-school/"><i
+									class="icofont icofont-social-linkedin"></i></a>
+							<a href="#"><i class="icofont icofont-social-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
+					<h4 class="widget-title">Contact Information</h4>
+					<div class="contact-widget">
+						<h5>address:</h5>
+						<p>358/3/A, Hazi Bhaban,Modhubag, <br />Hatirjheel, Mogbazar, Dhaka 1217 Dhaka,</p>
+						<h5>phone:</h5>
+						<a href="tel:+8801521466771">+8801521466771</a>
+						<h5>E-mail:</h5>
+						<p>
+							<a href="mailto:info@tweenautoschool.com">
+								info@tweenautoschool.com</a>
+						</p>
+					</div>
+				</div>
+				<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58420.55079577789!2d90.3555972977437!3d23.77288400190925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79e01bbe2cf%3A0x5ae4abf4a2518aed!2sRd%20No%2015%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1654580430940!5m2!1sen!2sbd"
+						height="300" style="border:0;" allowfullscreen="" loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</div>
+
+			<div class="row mb-4">
+				<div class="col-md-3" style='border-right:1px solid #fff'>
+					<h5 style='color:white'>Payment Method</h5>
+				</div>
+				<div class="col-md-9">
+					<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/bkash.png' %}"
+						alt="">
+					<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/roket.jpg' %}"
+						alt="">
+					<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/nagad.jpg' %}"
+						alt="">
+				</div>
+			</div>
+
+			<div class="footer-bottom text-center col-12">
+				<div class="row">
+					<div class="col-12 col-md-8">
+						<p class="copyright">Copyright &copy; <a href="#">TWEEN Automobile School</a> ALL Right Reserved
+							| <a style="font-weight:800 ;" href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
+					</div>
+					<div class="col-12 col-md-4">
+						<p>Developed by Universe Infotech</p>
 					</div>
 				</div>
 			</div>
-			<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
-				<h4 class="widget-title">Contact Information</h4>
-				<div class="contact-widget">
-					<h5>address:</h5> 
-					<p>358/3/A, Hazi Bhaban,Modhubag, <br />Hatirjheel, Mogbazar, Dhaka 1217 Dhaka,</p>
-					<h5>phone:</h5>
-					<a href="tel:+8801521466771">+8801521466771</a>
-					<h5>E-mail:</h5>
-					<p>
-						<a href="mailto:info@tweenautoschool.com">
-                                    info@tweenautoschool.com</a>
-					</p>
-				</div>
-			</div>
-			<div class="footer-widget text-left col-lg-4 col-md-4 col-12">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58420.55079577789!2d90.3555972977437!3d23.77288400190925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79e01bbe2cf%3A0x5ae4abf4a2518aed!2sRd%20No%2015%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1654580430940!5m2!1sen!2sbd" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
-		</div>
 
-<div class="row mb-4">
-    <div class="col-md-3" style='border-right:1px solid #fff'>
-        <h5 style='color:white'>Payment Method</h5>
-    </div>
-    <div class="col-md-9">
-        	<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/bkash.png' %}" alt="">
-			<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/roket.jpg' %}" alt="">
-			<img style="height: 40px; width: 70px;" src="{% static 'automobileapp/img/logo/nagad.jpg' %}" alt="">
-    </div>
-</div>
-			
-	<div class="footer-bottom text-center col-12">
-		<div class="row">
-			<div class="col-12 col-md-8">				
-				<p class="copyright">Copyright &copy; <a href="#">TWEEN Automobile School</a> ALL Right Reserved | <a style="font-weight:800 ;" href="{% url 'privacy-policy' %}">Privacy Policy</a></p> 
-			</div>
-			<div class="col-12 col-md-4">
-				<p>Developed by Universe Infotech</p>
-			</div>
 		</div>
 	</div>
-	
+
 	</div>
-</div>
+	<!-- Body main wrapper end -->
 
-</div>
-<!-- Body main wrapper end -->
+	<!-- JS -->
 
-<!-- JS -->
-
-<!-- jQuery JS
+	<!-- jQuery JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/vendor/jquery-1.12.0.min.js' %}"></script>
-<!-- Bootstrap JS
+	<script src="{% static 'automobileapp/js/vendor/jquery-1.12.0.min.js' %}"></script>
+	<!-- Bootstrap JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/bootstrap.bundle.min.js' %}"></script>
-<!-- Plugins JS
+	<script src="{% static 'automobileapp/js/bootstrap.bundle.min.js' %}"></script>
+	<!-- Plugins JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/slick.min.js' %}"></script>
-<script src="{% static 'automobileapp/js/plugins.js' %}"></script>
-<!-- Ajax Mail JS
+	<script src="{% static 'automobileapp/js/slick.min.js' %}"></script>
+	<script src="{% static 'automobileapp/js/plugins.js' %}"></script>
+	<!-- Ajax Mail JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/ajax-mail.js' %}"></script>
-<!-- WOW JS
+	<script src="{% static 'automobileapp/js/ajax-mail.js' %}"></script>
+	<!-- WOW JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/wow.min.js' %}"></script>
-<!-- Style Customizer JS
+	<script src="{% static 'automobileapp/js/wow.min.js' %}"></script>
+	<!-- Style Customizer JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/style-customizer.js' %}"></script>
-<!-- Main JS
+	<script src="{% static 'automobileapp/js/style-customizer.js' %}"></script>
+	<!-- Main JS
 ============================================ -->
-<script src="{% static 'automobileapp/js/main.js' %}"></script>
-<script src="{% static 'automobileapp/js/main.js' %}"></script>
+	<script src="{% static 'automobileapp/js/main.js' %}"></script>
+	<script src="{% static 'automobileapp/js/main.js' %}"></script>
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-	const Toast = Swal.mixin({
-	toast: true,
-	position: 'top-end',
-	showConfirmButton: false,
-	timer: 3000,
-	timerProgressBar: true,
-	didOpen: (toast) => {
-		toast.addEventListener('mouseenter', Swal.stopTimer)
-		toast.addEventListener('mouseleave', Swal.resumeTimer)
-	}
-	})
-	{% for message in messages %}
-	Toast.fire({
-	icon: 'success',
-	title: '{{ message }}',
-	})
-	{% endfor %}
-</script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+		{% for message in messages %}
+		Toast.fire({
+			icon: 'success',
+			title: '{{ message }}',
+		})
+		{% endfor %}
+	</script>
 
-{% block script %}
-  
-{% endblock script %}
+	{% block script %}
 
-<script>
-$('.partner-slider').slick({
-  dots: true,
-  infinite: true,
-  speed: 300,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-      }
-    }
+	{% endblock script %}
 
-  ]
-});
-</script>
-
-<script>
-$('.alumnus-slider').slick({
-  dots: true,
-  infinite: true,
-  speed: 300,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-		autoplay: true,
-  	  autoplaySpeed: 2000,
-      }
-    }
-
-  ]
-});
-</script>
-
-<script>
-	$('.course-slider').slick({
-	  dots: true,
-	  infinite: true,
-	  speed: 300,
-	  autoplay: true,
-	  autoplaySpeed: 2000,
-	  slidesToShow: 4,
-	  slidesToScroll: 1,
-	  responsive: [
-		{
-		  breakpoint: 1024,
-		  settings: {
-			slidesToShow: 3,
-			slidesToScroll: 1,
-			autoplay: true,
-			autoplaySpeed: 2000,
+	<script>
+		$('.partner-slider').slick({
+			dots: true,
 			infinite: true,
-			dots: true
-		  }
-		},
-		{
-		  breakpoint: 800,
-		  settings: {
-			slidesToShow: 2,
+			speed: 300,
+			slidesToShow: 5,
 			slidesToScroll: 1,
 			autoplay: true,
 			autoplaySpeed: 2000,
-		  }
-		},
-		{
-		  breakpoint: 480,
-		  settings: {
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			autoplay: true,
-			autoplaySpeed: 2000,
-		  }
-		}
-	
-	  ]
-	})
-	.on("setPosition", function () {
-			resizeSlider();
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				}
+
+			]
 		});
+	</script>
+
+	<script>
+		$('.alumnus-slider').slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			autoplay: true,
+			autoplaySpeed: 2000,
+			slidesToShow: 5,
+			slidesToScroll: 1,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				}
+
+			]
+		});
+	</script>
+
+	<script>
+		$('.course-slider').slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			autoplay: true,
+			autoplaySpeed: 2000,
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 800,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				}
+
+			]
+		})
+			.on("setPosition", function () {
+				resizeSlider();
+			});
 
 		$(window).on("resize", function (e) {
-		resizeSlider();
+			resizeSlider();
 		});
 
 		var slickHeight = $(".slick-track").outerHeight();
@@ -358,54 +377,55 @@ $('.alumnus-slider').slick({
 		var slideHeight = $(".slick-track").find(".slick-slide").outerHeight();
 
 		function resizeSlider() {
-		$(".slick-track")
-			.find(".slick-slide .slide-wrap")
-			.css("height", slickHeight + "px");
+			$(".slick-track")
+				.find(".slick-slide .slide-wrap")
+				.css("height", slickHeight + "px");
 		}
 	</script>
 
-<script>
-	$('.imagegellery-slider').slick({
-	  dots: true,
-	  infinite: true,
-	  autoplay: true,
-  	  autoplaySpeed: 2000,
-	  speed: 300,
-	  slidesToShow: 4,
-	  slidesToScroll:1,
-	  responsive: [
-		{
-		  breakpoint: 1024,
-		  settings: {
+	<script>
+		$('.imagegellery-slider').slick({
+			dots: true,
+			infinite: true,
+			autoplay: true,
+			autoplaySpeed: 2000,
+			speed: 300,
 			slidesToShow: 4,
 			slidesToScroll: 1,
-			autoplay: true,
-  	  		autoplaySpeed: 2000,
-			infinite: true,
-			dots: true
-		  }
-		},
-		{
-		  breakpoint: 600,
-		  settings: {
-			slidesToShow: 3,
-			slidesToScroll: 1,
-			autoplay: true,
-  	  		autoplaySpeed: 2000,
-		  }
-		},
-		{
-		  breakpoint: 480,
-		  settings: {
-			slidesToShow: 2,
-			slidesToScroll: 1,
-			autoplay: true,
-  	  		autoplaySpeed: 2000,
-		  }
-		}
-	
-	  ]
-	});
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 1,
+						autoplay: true,
+						autoplaySpeed: 2000,
+					}
+				}
+
+			]
+		});
 	</script>
 </body>
+
 </html>

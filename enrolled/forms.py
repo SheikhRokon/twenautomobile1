@@ -1,5 +1,4 @@
 from django import forms
-from .models import Order
 from .models import *
  
 class OrderPaymentForm(forms.Form):
@@ -35,3 +34,32 @@ class PaymentMethodForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['payment_option']
+
+class bookingstudentFrom(forms.ModelForm):
+    name = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Your Name" }))
+
+    email = forms.EmailField(widget= forms.EmailInput(attrs ={
+        'class': 'form-control', 
+        'placeholder':"Your Email" }))
+
+    phone = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Your Number" }))
+
+    course = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Your Course" }))    
+    
+    permanent_a = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Your Permanent Address" }))
+
+    present_a = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Your Present Address" }))
+
+    class Meta:
+        model = BokingNow
+        fields = '__all__'

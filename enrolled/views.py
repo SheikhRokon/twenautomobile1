@@ -206,7 +206,28 @@ def certificate_search(request):
     search_item = Q(certificate_id__icontains=query) 
     certificate = StudentCertificateVerification.objects.filter(search_item)
     return render(request, 'enrolled/certificate-search.html', {'certificate':certificate})
+
+
+def bookInStudent(request):
+    if request.method == 'POST':
+        forms = bookingstudentFrom(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('index')
+    else:
+        forms = bookingstudentFrom()
     
+
+        context = {
+            'forms':forms
+        }
+
+    return render(request, 'enrolled/others_pay.html',context)
+
+
+
+
+
 
 
 import requests

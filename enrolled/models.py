@@ -143,3 +143,22 @@ class BkashPaymentExecute(models.Model):
     intent = models.CharField(max_length=150)
     merchantInvoiceNumber = models.CharField(max_length=150)
     customerMsisdn = models.CharField(max_length=150)
+
+class BokingNow(models.Model):
+
+    name = models.CharField(max_length=80)
+    email = models.EmailField(max_length = 250)
+    phone= models.CharField(max_length = 13)
+    course = models.CharField(max_length=200)
+    permanent_a = models.CharField(max_length=200)
+    present_a = models.CharField(max_length=200)
+
+    class Meta:
+
+        verbose_name = 'BokingNow'
+        verbose_name_plural = 'BokingNows'
+
+    def __str__(self):
+        return self.name
+
+

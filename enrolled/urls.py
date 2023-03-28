@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import*
+from . views import*
 
 
 urlpatterns = [
@@ -14,4 +14,6 @@ urlpatterns = [
     path('certificate-search/', certificate_search, name='certificate-search'),
     path('create_bkash_payment/',create_bkash_payment, name='create_bkash_payment'),
     path('execute_bkash_payment/',execute_bkash_payment, name='execute_bkash_payment'),
+
+    path('other/', bookInStudent, name='bookInStudent')
 ]

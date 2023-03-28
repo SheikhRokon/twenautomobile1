@@ -47,7 +47,7 @@
                 <div class="col-12 col-md-4 my-auto">          
                     <img style="width:100%;" src="{{ course.image.url }}" alt="" />
                     
-                    <div class="my-3 text-center">
+                    <!-- <div class="my-3 text-center">
                         <a class="btn bg-info text-white" href="{{ course.get_add_to_cart_url }}">
                             
                             {% if course.title == 'Industrial Training' %}
@@ -59,8 +59,26 @@
                            
                         
                         </a> <br>
-                        <!-- <div class="fb-share-button mt-3" data-href="https://tweenautoschool.com/course-details/{{ course.slug }}" data-layout="button"></div> -->
+                        <div class="fb-share-button mt-3" data-href="https://tweenautoschool.com/course-details/{{ course.slug }}" data-layout="button"></div>
+                    </div> -->
+
+                    
+                    {% if course.title == 'Industrial Training' %}
+                        <div class="my-3 text-center">
+                            <a class="btn bg-info text-white" href="{% url 'bookInStudent' %}">
+                                Book Now
+                            </a> <br>
+                        </div>
+                    {% else %}
+                    <div class="my-3 text-center">
+                        <a class="btn bg-info text-white" href="{{ course.get_add_to_cart_url }}">
+                            
+                            Enroll Now
+                        </a> <br>
                     </div>
+                    {% endif %}
+                        
+
                 </div>
                 <div class="col-12 col-md-8 my-auto">
                     <div class="row text-center">
