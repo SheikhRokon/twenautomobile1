@@ -143,14 +143,11 @@
                                 <ul>
 
                                     {% if user.is_authenticated %}
-                                    <li><a href="{% url 'profile' %}"><i class="fa-regular fa-paper-plane"></i> My courses</a></li>
-                                    <li><a href="{% url 'profile' %}"><i class="fa-regular fa-bookmark"></i> Certificate</a></li>
-                                    <li><a href="{% url 'profile' %}"><i class="fa-regular fa-clock"></i> Payment history</a></li>
-                                    <li><a href="{% url 'profile' %}"><i class="fa-regular fa-credit-card"></i> Payment Management</a>
-                                    <li><a href="{% url 'profile' %}"><i class="fa-sharp fa-regular fa-key"></i>Change password</a></li>
                                     <li><a href="{% url 'profile' %}"><i class="fa-regular fa-address-card"></i>Profile</a></li>
+                                    <li><a href="{% url 'profile' %}"><i class="fa-regular fa-bookmark"></i> Certificate</a></li>
+                                    <li><a href="{% url 'order-summary' %}"><i class="fa-regular fa-clock"></i> Payment history</a></li>
+                                    <li><a href="{% url 'password_change' %}"><i class="fa-sharp fa-regular fa-key"></i>Change password</a></li>
                                     <li><a href="{% url 'logout' %}"><i class="fa-sharp fa-regular fa-right-from-bracket"></i> Logout</a></li>
-                                    <li><a href="{% url 'order-summary' %}">Enrolled Summary</a></li>
                                     {% else %}
                                     <li><a href="{% url 'register' %}">Ragistration</a></li>
                                     <li><a href="{% url 'login' %}">Login</a></li>

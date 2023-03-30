@@ -260,10 +260,8 @@
                         {% endif %}
 
                         {% if cs.course_discount_price %}
-                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{
-                            cs.course_discount_price }}</li>
-                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{
-                                cs.course_price }}</del> </li>
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{ cs.course_discount_price }}</li>
+                        <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{ cs.course_price }}</del> </li>
                         {% else %}
                         <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }}</li>
                         {% endif %}
@@ -669,8 +667,7 @@
                     <ul class="nav instructor-tab-list fix">
                         {% for is in intructor %}
                         <li><a href="#instructor-{{forloop.counter}}" data-toggle="tab"><img
-                                    style="height: 130px;width: 130px;" src="{{ is.image.url }}" alt="" />{{ is.name
-                                }}</a></li>
+                                    style="height: 130px;width: 130px;" src="{{ is.image.url }}" alt="" />{{ is.name}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.shortcuts import render,get_object_or_404,redirect
 from automobileapp.models import *
@@ -6,25 +6,13 @@ from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import *
+from automobileapp.models import *
 from .forms import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import View
 from django.db.models import F
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
-
-class OtherPaymentView(View):
-    def get(self, request, *args, **kwargs):
-        try:
-            form = OrderPaymentForm()
-            
-            context = {
-                'form': form,
-            }
-            return render(request, 'enrolled/others_pay.html', context)
-        except ObjectDoesNotExist:
-            messages.warning(request, 'You have no active order')
-            return redirect('/')
 
 
 @login_required
@@ -36,18 +24,18 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         #check the order course is in the order
         if order.cart_items.filter(course__slug=course.slug).exists():
-            messages.info(request, 'This course already add to cart')
+            # messages.info(request, 'This course already add to cart')
             return redirect('payment-form')
         
         else:
             order.cart_items.add(order_course)
-            messages.info(request, 'This course was add to cart')
+            # messages.info(request, 'This course was add to cart')
             return redirect('payment-form')
     else:
         ordered_date = timezone.now()
         order =Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.cart_items.add(order_course)
-        messages.info(request, "This course was add to cart")
+        # messages.info(request, "This course was add to cart")
         return redirect("payment-form")
     return redirect("payment-form")
 
@@ -59,20 +47,21 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         #check the order course is in the order
         if order.cart_items.filter(course__slug=course.slug).exists():
-            messages.info(request, 'This course already add to cart')
-            return redirect('others_P')
+            # messages.info(request, 'This course already add to cart')
+            return redirect('/')
         
         else:
             order.cart_items.add(order_course)
-            messages.info(request, 'This course was add to cart')
-            return redirect('others_P')
+            # messages.info(request, 'This course was add to cart')
+            return redirect('/')
     else:
         ordered_date = timezone.now()
         order =Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.cart_items.add(order_course)
-        messages.info(request, "This course was add to cart")
-        return redirect("others_P")
-    return redirect("others_P")
+        # messages.info(request, "This course was add to cart")
+        return redirect("/")
+    return redirect("/")
+
 
 @login_required
 def CartSummary(request):
@@ -90,17 +79,21 @@ def CartSummary(request):
 
 
 class PaymentView(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request, slug, *args, **kwargs):
         try:
             form = OrderPaymentForm()
             payment_method = PaymentMethodForm()
             order = Order.objects.get(user=request.user, ordered=False)
+            course = Course.objects.get(slug=slug)
+           
 
 
             context = {
                 'form': form,
                 'payment_method': payment_method,
                 'order':order,
+                'course':course,
+                
             }
             return render(request, 'enrolled/payment.html', context)
         except ObjectDoesNotExist:
@@ -208,18 +201,21 @@ def certificate_search(request):
     return render(request, 'enrolled/certificate-search.html', {'certificate':certificate})
 
 
-def bookInStudent(request):
+def bookInStudent(request, slug):
+    obj = get_object_or_404(Course, slug=slug)
+
     if request.method == 'POST':
         forms = bookingstudentFrom(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('index')
+            return redirect('home')
     else:
         forms = bookingstudentFrom()
     
 
         context = {
-            'forms':forms
+            'forms':forms,
+            'obj':obj
         }
 
     return render(request, 'enrolled/others_pay.html',context)
@@ -354,9 +350,16 @@ def execute_bkash_payment(request):
         order.save()
         messages.success(request, "Your Payment successful done")
         return redirect("/")
+
+    elif response.get("statusCode") == "2023" and response.get("statusMessage") == "Insufficient Balance":
+        messages.success(request, "Insufficient Balance")
+        return redirect("payment-form")
+
     else:
         messages.success(request, "Your Payment Failed")
-        return redirect("/")
+        return redirect("payment-form")
+
+    
 
 
 

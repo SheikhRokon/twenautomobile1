@@ -3,6 +3,11 @@ from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 
+
+
+
+
+
 class UpdateRegisterForm(forms.ModelForm):
     class Meta:
         model=User

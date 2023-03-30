@@ -2,6 +2,59 @@
     <!-- Hero Slide Area
     ============================================ -->
     <div id="hero-area" class="hero-slider-area">
+
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              
+
+            {% for b in banner %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <img class="d-block w-100" src="{{ b.image.url }}" alt="First slide">
+              </div>
+              {% endfor %}
+
+            <div class="carousel-caption d-none d-md-block" style=  "padding: 50px; ">
+                <h1 style="color: yellow;margin-bottom: 10px;font-weight: 400; " >Welcome to</h1>
+                <h4 style="color: yellow;margin-bottom: 10px; font-weight: 200;">The Leading Professional Automotive Training Institute In Bangladesh</h4>
+                <h4 style="color: yellow; margin-bottom: 20px;font-weight: 200;">We are for your Automotive Profession</h4>
+               <a href="#" class="py-2 px-3 bg-warning ">About us</a>
+              </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+    <div id="hero-area" class="hero-slider-area">
         <div id="hero-slider" class="nivoSlider slider-image">
             {% for b in banner %}
             <img src="{{ b.image.url }}" alt="main slider" title="#htmlcaption{{ forloop.counter }}"/>
@@ -25,4 +78,4 @@
         {% endfor %}
 
 
-    </div>
+    </div> -->

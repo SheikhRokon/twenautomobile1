@@ -43,16 +43,32 @@
       <aside class="col-lg-6 mr-5 mb-5 ">
         <div class="summary">
           <h3 class="summary-title text-center ">Your Order</h3><!-- End .summary-title -->
+<hr>
+<div class="order ">
+  <div class="row justify-content-center mt-5 shadow">
+<img style="width: 200px; height: 200px;" src="{{ obj.image.url }}" alt="">
 
-          <table class=" shadow table table-summary ">
-           
-                 
-                      <div class="col-4">
-                          <h5>Tk {{ course.course_price }}</h5>
-                       </div>
+<table class="table shadow mt-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Titel</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ obj.title }}</td>
+      <td>{{ obj.course_duration_for_month }}</td>
+      <td>{{ obj.course_price }}</td>
+    </tr>
+    
+  </tbody>
+</table>
 
-
-          </table><!-- End .table table-summary -->
+  </div>
+</div>
+          <!-- End .table table-summary -->
         </div><!-- End .summary -->
       </aside><!-- End .col-lg-3 -->
 
@@ -63,7 +79,7 @@
           <h3>Booking form</h3>
         </div>
 
-				<form action="hhaha" method="post">
+				<form action="" method="POST">
           {% csrf_token %}
           {{ forms }}
           <input class="mt-3" type="submit" value="Submit" />

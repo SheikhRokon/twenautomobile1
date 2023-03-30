@@ -186,6 +186,8 @@ def course_detail(request, slug):
     }
     return render(request, "automobileapp/details/course-detail.html", context)
 
+
+
 def course_search(request):
     query = request.GET['q']
     search_item = Q(title__icontains=query) | Q(course_price__icontains=query) | Q(course_categorie__title__icontains=query)

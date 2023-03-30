@@ -34,13 +34,13 @@
     <div class="container my-4 " style="margin-top:0">
         <div class="card col-12 col-md-6  p-2 mx-auto border shadow">
             <div class="mx-auto">
-            <img class="rounded-circle account-img mx-auto" src="{{ request.user.profile.image.url }}" style="height: 300px;">           
+            <img class="rounded-circle account-img mx-auto" src="{{ user.Profile.image.url }}" style="height: 300px;">           
             </div>
             <div class="card-body profile">
                 <h5 class="text-center">{{ user.first_name }} {{ user.last_name }}</h5>
                 <div class="row mt-2 mx-auto">
                     <div class="col-6 ">
-                        <label>Username  </label>
+                        <label>Username</label>
                     </div>
                     <div class="col-6">
                         <p>: {{ user.username }}</p>
@@ -88,8 +88,6 @@
                 </div>
             </div>
             <a class="btn btn-info btn-sm " href="{% url 'profile-update' %}">Update Profile</a>
-            <a class="btn btn-info btn-sm " href="{% url 'password_change' %}">Change Password</a>
-
         </div>
     </div>
     

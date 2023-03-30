@@ -21,7 +21,7 @@ class Profile(models.Model):
     date_of_birthday    = models.DateField(auto_now_add=False,blank=True,null=True)
     permanent_address   = models.CharField(max_length=100,blank=True,null=True)
     present_address     = models.CharField(max_length=100,blank=True,null=True)
-    profile_registration  = models.DateField(default=timezone.now,blank=True,null=True)
+    profile_registration = models.DateField(default=timezone.now,blank=True,null=True)
     
 
     def __str__(self):

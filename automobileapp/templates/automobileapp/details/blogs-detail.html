@@ -47,16 +47,23 @@
                     <div class="text-center">
                         <img src="{{ blogs.image.url }}" alt="" />
                     </div>
-                                <div class="fb-share-button" 
-                                data-href="https://tweenautoschool.com/blog-details/{{ blogs.slug }}" 
-                                data-layout="button_count">
-                                </div>
+                        <div class="fb-like mt-3 ml-5" data-href="https://www.tweenautoschool.com/blog-details/{{ blogs.slug }}/" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+                                
+                                
+
+                                
+
                     <h3 class="mt-2 text-center">{{ blogs.title }}</h3>
                     <p>Posted on :{{ blogs.post_date }}</p>
                     <div class="description text-center">
                         <p>{{ blogs.description|safe }}</p>
                     </div>
+                    <div class="fb-comments" 
+                        data-href="https://www.tweenautoschool.com/blog-details/{{ blogs.slug }}/" 
+                        data-layout="button_count">
+                    </div>
                 </div>
+                
             </div>
         </div>
 
@@ -87,14 +94,11 @@
     </div>
     
   
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="LvI4DHTu"></script>
+
+
+
 
 
 {% endblock content %}

@@ -65,13 +65,13 @@
                     
                     {% if course.title == 'Industrial Training' %}
                         <div class="my-3 text-center">
-                            <a class="btn bg-info text-white" href="{% url 'bookInStudent' %}">
+                            <a class="btn bg-info text-white" href="{% url 'bookInStudent' course.slug %}">
                                 Book Now
                             </a> <br>
                         </div>
                     {% else %}
                     <div class="my-3 text-center">
-                        <a class="btn bg-info text-white" href="{{ course.get_add_to_cart_url }}">
+                        <a class="btn bg-info text-white" href="{% url 'payment-form' course.slug %}">
                             
                             Enroll Now
                         </a> <br>
