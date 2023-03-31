@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from certificate.models import Event, Participant
+from .models import Event, Participant
 import pandas as pd
 from .convter import ppt2pdf
 from pptx import Presentation
@@ -15,6 +15,7 @@ import os
 def index(request):
 	return render(request, 'index.html')
 
+@login_required
 def create(request):
 	if request.method == "POST":
 		csv = request.FILES.get('csv')
@@ -27,11 +28,11 @@ def create(request):
 			template = temp)
 		event.save()
 
-		return redirect(f"{event.id}/{event.slug}")
+		return redirect(f"/certificate/{event.id}/{event.slug}")
 
-	return render(request, 'create_event.html')
+	return render(request, 'certificate/create_event.html')
 
-
+@login_required
 def delete_event(request, id, slug):
 	event = Event.objects.filter(slug=slug, id=id).first()
 	if event.user == request.user:
@@ -43,7 +44,7 @@ def track(request, id, slug):
 	event = Event.objects.filter(slug=slug, id=id).first()
 	if event.message:
 
-		return render(request, 'track.html', {
+		return render(request, 'certificate/track.html', {
 			'event_name': event.event_name,
 			'event_date': event.date,
 			'participat_details': Participant.objects.filter(event=event)
@@ -139,16 +140,17 @@ def track(request, id, slug):
 			i=i+1
 
 		messages.success(request, "Certificates Sent Successfuly !!")
-		return redirect(f"{event.id}/{event.slug}")
+		return redirect(f"/certificate/{event.id}/{event.slug}")
 
 
-	return render(request, 'map_tags_of_template.html',{
+	return render(request, 'certificate/map_tags_of_template.html',{
 		'columns': list(pd.read_csv(event.csv_file).columns),
 		'tags': tags,
 		})
 
 
+@login_required
 def view_certificate_status(request):
-	return render(request, 'view_certificate_status.html',{
+	return render(request, 'certificate/view_certificate_status.html',{
 		'events': Event.objects.filter(user=request.user)
 		})

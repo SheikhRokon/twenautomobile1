@@ -1,10 +1,8 @@
 from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.utils.text import slugify
-# from userapp.models import User
 
 class Event(models.Model):
-	# user = models.ForeignKey(User, on_delete=models.CASCADE,default='admin')
 	event_name = models.CharField(max_length=250)
 	date = models.DateField(auto_now_add=True)
 	csv_file = models.FileField(upload_to="certificates/csv_files/")

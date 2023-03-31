@@ -9,7 +9,7 @@ from .forms import UserLoginForm
 
 urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
-    path('profile/update', user_views.profileupdate, name='profile-update'),
+    path('profile/update/', user_views.profileupdate, name='profile-update'),
     path('contact', contact, name='contact'),
     path('career/', career , name='career'),
     path('career-details/<slug>', careerdetails , name='career-detail'),

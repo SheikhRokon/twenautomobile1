@@ -4,6 +4,9 @@ from ckeditor.fields import RichTextField
 import string, random
 from django.db import IntegrityError
 from django.utils import timezone
+from django.db.models.signals import post_save
+
+
 
 class User(AbstractUser):
     phone = models.CharField(max_length = 15)
@@ -13,8 +16,6 @@ class User(AbstractUser):
     is_employee = models.BooleanField('Is employee', default=False)
     
     
-
-
 class Profile(models.Model):
     user                = models.OneToOneField(User, on_delete=models.CASCADE, max_length=1)
     image               = models.ImageField(upload_to="profilepicture", default='no_img.png')
@@ -26,6 +27,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+def create_profile(sender, instance, created, *args, **kwargs):
+    if not created:      # if user already exits then ignore
+        return
+    Profile.objects.create(user=instance)
+post_save.connect(create_profile, sender=User)
 
 
 class ConductData(models.Model):
