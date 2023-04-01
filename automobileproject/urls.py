@@ -24,7 +24,6 @@ urlpatterns = [
     path('', include('userapp.urls')),
     path('', include('enrolled.urls')),
     path('', include('dashboard.urls')),
-    path('certificate/', include('certificate.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] 
 if settings.DEBUG:

@@ -9,6 +9,8 @@ urlpatterns = [
     path("order_summary", OrderSummary, name="order-summary"),
     path("order_details/<int:pk>", OrderDetails, name="order-detail"),
     path('remove-form-cart/<slug>/', remove_form_cart, name='remove-form-cart'),
+
+    path('certificate/', certificate12, name='certificate'),
     path('certificate-verification/', certificate_verification, name='certificate-verification'),
     path('certificate-search/', certificate_search, name='certificate-search'),
     path('create_bkash_payment/',create_bkash_payment, name='create_bkash_payment'),

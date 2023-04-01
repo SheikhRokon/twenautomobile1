@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'enrolled',
     'dashboard',
     'fontawesomefree',
-    'certificate.apps.CertificateConfig',
 ]
 
 MIDDLEWARE = [

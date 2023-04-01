@@ -192,6 +192,9 @@ def remove_form_cart(request, slug):
 def certificate_verification(request):
     return render(request, 'enrolled/certificate-verification.html')
 
+def certificate12(request):
+    return render(request, 'enrolled/certificate.html')    
+
  
 
 def certificate_search(request):
