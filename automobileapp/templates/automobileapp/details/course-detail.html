@@ -63,7 +63,7 @@
                     </div> -->
 
                     
-                    {% if course.title == 'Industrial Training' %}
+                    {% if course.course_type.title == 'Offline Course' %} 
                         <div class="my-3 text-center">
                             <a class="btn bg-info text-white" href="{% url 'bookInStudent' course.slug %}">
                                 Book Now

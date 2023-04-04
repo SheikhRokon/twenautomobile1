@@ -143,3 +143,13 @@ class CountdownForm(forms.ModelForm):
     class Meta:
         model = Countdown
         fields = '__all__'
+
+class BookingStudentForm(forms.ModelForm):
+    class Meta:
+        model = BokingNow
+        fields = '__all__'
+
+class UserprofileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'                

@@ -18,7 +18,7 @@
                         <h3 class="box-title">Career List</h3>
                     </div>
                     <div class="col-4 text-end">
-                        <a class="btn btn-info me-1" href="{% url 'career-add' %}">Career Add</a>
+                        <a class="btn btn-info me-1" href="{% url 'bookingstudent-add' %}">Bookingstudent Add</a>
                     </div>
                 </div>
               </div>
@@ -28,12 +28,12 @@
                     <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Image</th>                
-                                <th>Post Date</th>                
-                                <th>End Date</th>
-                                <th>Active_status</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>                
+                                <th>Course</th>                
+                                <th>Permanent_Address</th>
+                                <th>Present_Address</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                         
@@ -41,19 +41,19 @@
                           </thead>
                           <tbody>
                             
-                            {% for c in career_list %}
+                            {% for c in bookingstudent_list %}
                             <tr>
-                              <td>{{ c.id }}</td>
-                              <td>{{ c.title }}</td>
-                              <td><img src="{{ c.image.url }}" alt=""></td>
-                              <td>{{ c.date}}</td>
-                              <td>{{ c.end_date }}</td>
-                              <td>{{ c.active_status }}</td>
+                              <td>{{ c.name }}</td>
+                              <td>{{ c.email }}</td>
+                              <td>{{ c.phone}}</td>
+                              <td>{{ c.course }}</td>
+                              <td>{{ c.permanent_a }}</td>
+                              <td>{{ c.present_a }}</td>
                               <td>
-                                <a class="btn btn-outline-primary" href="{% url 'career-edit' c.pk %}">Edit</a>
+                                <a class="btn btn-outline-primary" href="{% url 'bookingstudent-edit' c.pk %}">Edit</a>
                               </td>
                               <td>
-                                  <a class="btn btn-outline-danger" href="{% url 'career-delete' c.pk %}">Delete</a>
+                                  <a class="btn btn-outline-danger" href="{% url 'bookingstudent-delete' c.pk %}">Delete</a>
                                 </td>
                           </tr>
                             {% endfor %}

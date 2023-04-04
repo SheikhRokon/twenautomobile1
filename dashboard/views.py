@@ -3,7 +3,10 @@ from userapp.models import *
 from automobileapp.models import *
 from enrolled.models import *
 from .forms import *
+
 # Create your views here.
+from django.contrib import messages
+
 from django.utils import timezone
 from datetime import timedelta, datetime,date
 now = timezone.now()
@@ -191,12 +194,12 @@ def banner_list(request):
 
 def banner_add(request):
     if request.method == 'POST':
-        form = BannerSlideForm(request.POST, request.FILES)
+        form = BannerSliderForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('banner-list')
     else:
-        form = BannerSlideForm()
+        form = BannerSliderForm()
     return render(request, 'dashboard/banner/add.html', {'form':form})
 
 def banner_edit(request,pk):
@@ -404,12 +407,12 @@ def upcomingcourse_delete(request,pk):
 # alumnus
 
 def alumnus_list(request):
-    alumnus_list = alumnus.objects.all().order_by('-id')
+    alumnus_list = OurAlumnus.objects.all().order_by('-id')
     return render(request, 'dashboard/alumnus/list.html', {'alumnus_list':alumnus_list})
 
 def alumnus_add(request):
     if request.method == 'POST':
-        form = alumnusForm(request.POST, request.FILES)
+        form = OurAlumnusForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('alumnus-list')
@@ -418,16 +421,16 @@ def alumnus_add(request):
     return render(request, 'dashboard/alumnus/add.html', {'form':form})
 
 def alumnus_edit(request,pk):
-    alumnus = alumnus.objects.get(pk=pk)
+    alumnus = OurAlumnus.objects.get(pk=pk)
     if request.method == 'POST':
-        form = alumnusForm(request.POST,request.FILES,instance=alumnus)
+        form = OurAlumnusForm(request.POST,request.FILES,instance=alumnus)
         if form.is_valid():
             form.save()
             return redirect('alumnus-list') 
         else:
             return redirect('alumnus-add')
     else:
-        form = alumnusForm(instance=alumnus)
+        form = OurAlumnusForm(instance=alumnus)
     return render(request, 'dashboard/alumnus/add.html', {'form':form})
 
 
@@ -945,6 +948,44 @@ def mediacoverage_delete(request,pk):
     messages.success(request, 'Successfully delete')
     return redirect('mediacoverage-list')
 
+# bookingstudent
+
+def bookingstudent_list(request):
+    bookingstudent_list = BokingNow.objects.all().order_by('-id')
+    return render(request, 'dashboard/BookingStudent/list.html', {'bookingstudent_list':bookingstudent_list})
+
+def bookingstudent_add(request):
+    if request.method == 'POST':
+        form = BookingStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('bookingstudent-list')
+    else:
+        form = BookingStudentForm()
+    return render(request, 'dashboard/BookingStudent/add.html', {'form':form})
+
+def bookingstudent_edit(request,pk):
+    bookingstudent = BokingNow.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = BookingStudentForm(request.POST,request.FILES,instance=bookingstudent)
+        if form.is_valid():
+            form.save()
+            return redirect('bookingstudent-list') 
+        else:
+            return redirect('bookingstudent-add')
+    else:
+        form = BookingStudentForm(instance=bookingstudent)
+    return render(request, 'dashboard/BookingStudent/add.html', {'form':form})
+
+
+def bookingstudent_delete(request,pk):
+    bookingstudent=BokingNow.objects.get(pk=pk)
+    bookingstudent.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('bookingstudent-list')
+
+
+
 # countdown
 
 def countdown_list(request):
@@ -982,4 +1023,52 @@ def countdown_delete(request,pk):
     return redirect('countdown-list')
 
 
+# bkashpayment
+
+def bkashpayment_list(request):
+    bkashpayment_list = BkashPayment.objects.all().order_by('-id')
+    return render(request, 'dashboard/bkashpayment/payment_list.html', {'bkashpayment_list':bkashpayment_list})
+
+def bkashpayment_delete(request,pk):
+    bkashpayment=BkashPayment.objects.get(pk=pk)
+    bkashpayment.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('bkashpayment-list')
+
+
+# userprofile
+
+def userprofile_list(request):
+    userprofile_list = Profile.objects.all().order_by('-id')
+    return render(request, 'dashboard/userprofile/list.html', {'userprofile_list':userprofile_list})
+
+def userprofile_add(request):
+    if request.method == 'POST':
+        form = UserprofileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile-list')
+    else:
+        form = UserprofileForm()
+    return render(request, 'dashboard/userprofile/add.html', {'form':form})
+
+def userprofile_edit(request,pk):
+    userprofile = Profile.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = UserprofileForm(request.POST,request.FILES,instance=userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('userprofile-list') 
+        else:
+            return redirect('userprofile-add')
+    else:
+        form = UserprofileForm(instance=userprofile)
+    return render(request, 'dashboard/userprofile/add.html', {'form':form})
+
+
+def userprofile_delete(request,pk):
+    userprofile=Profile.objects.get(pk=pk)
+    userprofile.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('userprofile-list')
 

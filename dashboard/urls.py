@@ -163,5 +163,24 @@ urlpatterns = [
     path('dashboard/countdown-add/', countdown_add, name='countdown-add'),
     path('dashboard/countdown_edit/<pk>',countdown_edit, name='countdown-edit'),
     path('dashboard/countdown_delete/<pk>/',countdown_delete, name='countdown-delete'),
+
+
+    #bookingstudent 
+    path('dashboard/bookingstudent-list/', bookingstudent_list, name='bookingstudent-list'),
+    path('dashboard/bookingstudent-add/', bookingstudent_add, name='bookingstudent-add'),
+    path('dashboard/bookingstudent_edit/<pk>',bookingstudent_edit, name='bookingstudent-edit'),
+    path('dashboard/bookingstudent_delete/<pk>/',bookingstudent_delete, name='bookingstudent-delete'),
+
+    #bkashpayment 
+    path('dashboard/bkashpayment-list/', bkashpayment_list, name='bkashpayment-list'),
+    path('dashboard/bkashpayment_delete/<pk>/',bkashpayment_delete, name='bkashpayment-delete'),
+    
+
+    
+    #userprofile 
+    path('dashboard/userprofile-list/', userprofile_list, name='userprofile-list'),
+    path('dashboard/userprofile-add/', userprofile_add, name='userprofile-add'),
+    path('dashboard/userprofile_edit/<pk>',userprofile_edit, name='userprofile-edit'),
+    path('dashboard/userprofile_delete/<pk>/',userprofile_delete, name='userprofile-delete'),
     
 ]
