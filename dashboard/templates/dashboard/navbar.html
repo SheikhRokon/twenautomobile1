@@ -184,7 +184,35 @@
 				   <i class="ti-dashboard"></i>
 					<span>Dashboard</span>
 				  </a>
-				</li>	
+				</li>
+				<li class="treeview">
+					<a href="#">
+					  <i class="ti-pie-chart"></i>
+					  <span>User</span>
+					  <span class="pull-right-container">
+						<i class="fa fa-angle-right pull-right"></i>
+					  </span>
+					</a>
+					<ul class="treeview-menu">
+					  <li><a href="{% url 'user-list' %}"><i class="ti-more"></i>User List</a></li>
+					  <li><a href="{% url 'user-add' %}"><i class="ti-more"></i>User Add</a></li>
+					</ul>
+				  </li>	
+
+				  <li class="treeview">
+					<a href="#">
+					  <i class="ti-pie-chart"></i>
+					  <span>User Profile</span>
+					  <span class="pull-right-container">
+						<i class="fa fa-angle-right pull-right"></i>
+					  </span>
+					</a>
+					<ul class="treeview-menu">
+					  <li><a href="{% url 'userprofile-list' %}"><i class="ti-more"></i>Profile List</a></li>
+					  <li><a href="{% url 'userprofile-add' %}"><i class="ti-more"></i>Profile Add</a></li>
+					</ul>
+				  </li>
+
 				<li class="treeview">
 				  <a href="#">
 					<i class="ti-alert"></i>
@@ -252,20 +280,7 @@
 					</ul>
 				  </li>
 
-				  <li class="treeview">
-					<a href="#">
-					  <i class="ti-pie-chart"></i>
-					  <span>User Profile</span>
-					  <span class="pull-right-container">
-						<i class="fa fa-angle-right pull-right"></i>
-					  </span>
-					</a>
-					<ul class="treeview-menu">
-					  <li><a href="{% url 'userprofile-list' %}"><i class="ti-more"></i>Profile List</a></li>
-					  <li><a href="{% url 'userprofile-add' %}"><i class="ti-more"></i>Profile Add</a></li>
-					</ul>
-				  </li>
-
+				 
 
 				  <li class="treeview">
 					<a href="#">

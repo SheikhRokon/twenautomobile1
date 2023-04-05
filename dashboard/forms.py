@@ -152,4 +152,10 @@ class BookingStudentForm(forms.ModelForm):
 class UserprofileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'                
+        fields = '__all__'               
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'            
+

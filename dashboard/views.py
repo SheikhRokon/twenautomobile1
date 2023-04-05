@@ -1072,3 +1072,40 @@ def userprofile_delete(request,pk):
     messages.success(request, 'Successfully delete')
     return redirect('userprofile-list')
 
+
+
+# user
+
+def user_list(request):
+    user_list = User.objects.all().order_by('-id')
+    return render(request, 'dashboard/user/list.html', {'user_list':user_list})
+
+def user_add(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('user-list')
+    else:
+        form = UserForm()
+    return render(request, 'dashboard/UserForm/add.html', {'form':form})
+
+def user_edit(request,pk):
+    user = User.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = UserForm(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-list') 
+        else:
+            return redirect('user-add')
+    else:
+        form = UserForm(instance=user)
+    return render(request, 'dashboard/user/add.html', {'form':form})
+
+
+def user_delete(request,pk):
+    user=User.objects.get(pk=pk)
+    user.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('user-list')

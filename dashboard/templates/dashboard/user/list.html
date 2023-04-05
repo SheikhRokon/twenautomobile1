@@ -1,0 +1,80 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block dashboard_content %}
+      <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="container-full">
+      <!-- Content Header (Page header) -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="box-header with-border">
+                
+                <div class="row">
+                    <div class="col-8">
+                        <h3 class="box-title">User List</h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <a class="btn btn-info me-1" href="{% url 'user-add' %}">User Add</a>
+                    </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Admin User</th>
+                                <th>Instructor User</th>
+                                <th>Employee User</th>
+                                <th>Student User</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                        
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                            {% for c in user_list %}
+                            <tr>
+                              <td>{{ c.username }}</td>
+                              <td>{{ c.is_admin }}</td>
+                              <td>{{ c.is_instructor }}</td>
+                              <td>{{ c.is_employee }}</td>
+                              <td>{{ c.is_student }}</td>
+                              <td>{{ c.phone }}</td>
+                              <td>
+                                <a class="btn btn-outline-primary" href="{% url 'user-edit' c.pk %}">Edit</a>
+                              </td>
+                              <td>
+                                  <a class="btn btn-outline-danger" href="{% url 'user-delete' c.pk %}">Delete</a>
+                                </td>
+                          </tr>
+                            {% endfor %}
+                              
+                          </tbody>	  
+                    </table>
+                  </div>              
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->          
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    
+    </div>
+</div>
+<!-- /.content-wrapper -->
+{% endblock dashboard_content %}
+    
+
+

@@ -182,5 +182,12 @@ urlpatterns = [
     path('dashboard/userprofile-add/', userprofile_add, name='userprofile-add'),
     path('dashboard/userprofile_edit/<pk>',userprofile_edit, name='userprofile-edit'),
     path('dashboard/userprofile_delete/<pk>/',userprofile_delete, name='userprofile-delete'),
+
+
+    #user
+    path('dashboard/user-list/', user_list, name='user-list'),
+    path('dashboard/user-add/', user_add, name='user-add'),
+    path('dashboard/user_edit/<pk>',user_edit, name='user-edit'),
+    path('dashboard/user_delete/<pk>/',user_delete, name='user-delete'),
     
 ]
