@@ -1,6 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
+
+	
 	<!-- whatsapp Chat plugin Code -->
 
 	<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
@@ -49,11 +51,13 @@
 	<title>Home || TWEEN Automobile</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 	{% block fb_meta %}
+	
 	{% endblock fb_meta %}
 	<!-- Favicon -->
 	<link rel="icon" type="image/x-icon" href="{% static 'automobileapp/img/logo/icon1.jpg' %}">
-	<!-- <link rel="icon" type="image/x-icon" href="{% static 'automobileapp/img/logo/icon1.jpg' %}"> -->
 	<!-- Fonts -->
 	<link href="{% static 'automobileapp/fonts/lato/lato.css' %}" rel="stylesheet">
 	<!-- CSS -->
@@ -93,13 +97,47 @@
 
 	{% endblock style %}
 
+	
+
 </head>
 
 <body>
+
+	<style>
+		#socail_area{
+		list-style-type: none;
+		padding: 10px;
+		position: fixed;
+		right: 0px;
+		top: 20%;
+		z-index: 9999999;
+		border-radius: 25px 0px 0px 25px;
+		
+	}
+	#socail_area li{
+		float: none;
+		padding: 10px;
+		
+	
+	}
+	#socail_area img{
+		width: 40px;
+		height: 40px;
+	}
+	</style>
+
+	<div class="float-left">
+		<ul id="socail_area">
+			<li><a href="https://www.facebook.com/tweenautoschool"><img src="{% static  'automobileapp/img/logo/facebook.png' %}"></a></li>
+			<li><a href="#"><img src="{% static  'automobileapp/img/logo/instagram.png' %}"></a></li>
+			<li><a href="https://www.linkedin.com/company/twwen-automobile-school/"><img src="{% static  'automobileapp/img/logo/linkedin.png' %}"></a></li>
+		</ul>
+	</div>
+
+	
 	<!-- Body main wrapper start -->
 	<div class="wrapper fix">
 		{% include 'automobileapp/include/navbar.html' %}
-
 		{% block content %}
 
 		{% endblock content %}

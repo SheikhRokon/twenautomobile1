@@ -55,7 +55,7 @@
 
                     <h3 class="mt-2 text-center">{{ blogs.title }}</h3>
                     <p>Posted on :{{ blogs.post_date }}</p>
-                    <div class="description text-center">
+                    <div class="description">
                         <p>{{ blogs.description|safe }}</p>
                     </div>
                     <div class="fb-comments" 
@@ -67,6 +67,8 @@
             </div>
         </div>
 
+        
+        {% comment %}
         <div class="container">
             <h3>Leave a comment:</h3>
             <form action="" method="post" class="mb-5">
@@ -91,6 +93,8 @@
             <hr>
             {% endfor %}
         </div>
+        {% endcomment %}
+            
     </div>
     
   

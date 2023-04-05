@@ -5,7 +5,7 @@ from . views import*
 urlpatterns = [
     path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
     path("Enroll_summary", CartSummary, name="cart-summary"),
-    path("payment-form/<slug>/",PaymentView.as_view(), name="payment-form"),
+    path("payment-form/<slug>/", PaymentView.as_view(), name="payment-form"),
     path("order_summary", OrderSummary, name="order-summary"),
     path("order_details/<int:pk>", OrderDetails, name="order-detail"),
     path('remove-form-cart/<slug>/', remove_form_cart, name='remove-form-cart'),

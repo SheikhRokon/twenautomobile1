@@ -83,15 +83,23 @@ class PaymentView(View):
         try:
             form = OrderPaymentForm()
             payment_method = PaymentMethodForm()
-            order = Order.objects.get(user=request.user, ordered=False)
             course = Course.objects.get(slug=slug)
-           
+            ordered_date = timezone.now()
+            if course.course_discount_price:
+                total_order_amount = course.course_discount_price
+            else:
+                total_order_amount = course.course_price
+
+            existing_order = Order.objects.filter(user=request.user, ordered=False).first()
+
+            if not existing_order:
+                Order.objects.create(user=request.user, total_order_amount=total_order_amount, ordered_date=ordered_date)
+                
 
 
             context = {
                 'form': form,
                 'payment_method': payment_method,
-                'order':order,
                 'course':course,
                 
             }
@@ -116,7 +124,6 @@ class PaymentView(View):
             form = OrderPaymentForm(request.POST)
             pay_form = PaymentMethodForm(request.POST, instance=payment_obj)
             if form.is_valid() and pay_form.is_valid():
-
                 payment_method =form.cleaned_data.get('payment_method')
                 your_payment_number =form.cleaned_data.get('your_payment_number')
                 pyamnet_transaction_id =form.cleaned_data.get('pyamnet_transaction_id')
@@ -265,6 +272,7 @@ def create_bkash_payment(request, *args, **kwargs):
     id_token = grant_token_function()
     create_url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/create"
     order = Order.objects.get(user=request.user, ordered=False)
+    print(order)
     payload = json.dumps({
         "mode": "0011",
         "payerReference": "N/A",
@@ -339,16 +347,17 @@ def execute_bkash_payment(request):
         customerMsisdn = response.get('customerMsisdn')
 
         BkashPaymentExecute.objects.create(user=request.user, paymentID=paymentID, createTime=createTime, trxID=trxID, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, customerMsisdn=customerMsisdn)
-        order_qs = Order.objects.filter(user=request.user, ordered=False)
-        order = order_qs[0]
+        # order_qs = Order.objects.filter(user=request.user, ordered=False)
+        order = Order.objects.get(user=request.user, ordered=False)
+        # order = order_qs[0]
         order.ordered = True
         order.orderId = order.id
         order.payment_option = 'Bkash'
 
-        order_items = CartItem.objects.filter(user=request.user, ordered=False)
-        for order_item in order_items:
-            order_item.ordered = True
-            order_item.save()
+        # order_items = CartItem.objects.filter(user=request.user, ordered=False)
+        # for order_item in order_items:
+        #     order_item.ordered = True
+        #     order_item.save()
 
         order.save()
         messages.success(request, "Your Payment successful done")
@@ -356,11 +365,11 @@ def execute_bkash_payment(request):
 
     elif response.get("statusCode") == "2023" and response.get("statusMessage") == "Insufficient Balance":
         messages.success(request, "Insufficient Balance")
-        return redirect("payment-form")
+        return redirect("order-summary")
 
     else:
         messages.success(request, "Your Payment Failed")
-        return redirect("payment-form")
+        return redirect("order-summary")
 
     
 
