@@ -130,8 +130,8 @@ class BkashPayment(models.Model):
     currency = models.CharField(max_length = 150)
     intent = models.CharField(max_length = 150)
     merchantInvoiceNumber = models.CharField(max_length = 150)
-    course  = models.ForeignKey(Course,on_delete=models.SET_NULL, blank=True, null=True)
-    course_title = models.CharField(max_length= 400,default='hello')
+    course  = models.CharField(max_length=255, blank=True, null=True)
+    # course  = models.ForeignKey(Course,on_delete=models.SET_NULL, blank=True, null=True)
 
 
 
