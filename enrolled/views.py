@@ -13,6 +13,7 @@ from django.views.generic import View
 from django.db.models import F
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import Permission, User
 
 
 @login_required
@@ -85,6 +86,7 @@ class PaymentView(View):
             payment_method = PaymentMethodForm()
             course = Course.objects.get(slug=slug)
             ordered_date = timezone.now()
+            order_title = course.title
             if course.course_discount_price:
                 total_order_amount = course.course_discount_price
             else:
@@ -93,7 +95,7 @@ class PaymentView(View):
             existing_order = Order.objects.filter(user=request.user, ordered=False).first()
 
             if not existing_order:
-                Order.objects.create(user=request.user, total_order_amount=total_order_amount, ordered_date=ordered_date)
+                Order.objects.create(user=request.user, total_order_amount=total_order_amount, ordered_date=ordered_date,order_title=order_title)
                 
 
 

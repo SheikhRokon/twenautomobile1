@@ -14,42 +14,42 @@ UserModel = User
  
 
 # Create your views here.
-def register(request):
-    if request.method =='POST':
-        form =RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username =form.cleaned_data.get('username')      
-            messages.success(request,f'Account created for {username}! You are now able to login')
-            return redirect('login')
-    else:
-        form =RegisterForm()
-    return render(request, 'userapp/register.html',{'form':form})
-
 # def register(request):
-#     if request.method == 'POST':
-#         form = RegisterForm(request.POST)
+#     if request.method =='POST':
+#         form =RegisterForm(request.POST)
 #         if form.is_valid():
-#             user=form.save(commit=False)
-#             user.is_active=False
-#             user.save()
-#             current_site = get_current_site(request)
-#             mail_subject = 'Activate Your Account'
-#             message = render_to_string('userapp/email_template.html', {
-#                 'user':user,
-#                 'domain': current_site.domain,
-#                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-#                 'token' : default_token_generator.make_token(user),
-#             })
-#             send_mail=form.cleaned_data.get('email')
-#             email=EmailMessage(mail_subject, message, to=[send_mail])
-#             email.send()
-#             messages.success(request, 'Successfully Created Account')
-#             messages.info(request, 'Activate Your Account from the mail you provided')
+#             form.save()
+#             username =form.cleaned_data.get('username')      
+#             messages.success(request,f'Account created for {username}! You are now able to login')
 #             return redirect('login')
 #     else:
-#         form = RegisterForm()
-#     return render(request, 'userapp/register.html', {'form':form})
+#         form =RegisterForm()
+#     return render(request, 'userapp/register.html',{'form':form})
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False)
+            user.is_active=False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate Your Account'
+            message = render_to_string('userapp/email_template.html', {
+                'user':user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token' : default_token_generator.make_token(user),
+            })
+            send_mail=form.cleaned_data.get('email')
+            email=EmailMessage(mail_subject, message, to=[send_mail])
+            email.send()
+            messages.success(request, 'Successfully Created Account')
+            messages.info(request, 'Activate Your Account from the mail you provided')
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'userapp/register.html', {'form':form})
 
 def activate(request, uidb64, token):
     try:

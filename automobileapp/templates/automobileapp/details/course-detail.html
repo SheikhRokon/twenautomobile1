@@ -98,23 +98,26 @@
                     </div>
                     
                     <div class="row text-center my-3">
-                        <div class="col-4">
+                        <div class="col-3">
                             {% if course.course_duration_for_month %}
                             <li>{{ course.course_duration_for_month }} Month </li>                               
                             {% endif %}
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             {% if course.course_duration_for_day %}
                              <li>Total  {{ course.course_duration_for_day }} Day </li>                            
                             {% endif %}
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             {% if course.course_duration_for_hours %}
                             <li>{{ course.course_duration_for_hours }} Hours </li>                               
                             {% endif %}
                         </div>
+                        <div class="col-3 ">
+                            <li>{{ course.course_type }}</li>                               
+                        </div>
                     </div><hr>
-                    <div class="my-2">
+                    <div class="my-2 ">
                         <h6>Description: </h6>
                         <p>{{ course.description|safe }}</p>
                     </div>

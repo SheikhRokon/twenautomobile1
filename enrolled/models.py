@@ -47,6 +47,7 @@ class Order(models.Model):
     paymentId = models.CharField(max_length = 150, blank=True, null=True) 
     coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
     payment_option = models.CharField(max_length = 150)
+    order_title = models.CharField(max_length = 150, blank=True, null=True)
     
     
     def __str__(self):
@@ -130,6 +131,7 @@ class BkashPayment(models.Model):
     intent = models.CharField(max_length = 150)
     merchantInvoiceNumber = models.CharField(max_length = 150)
     course  = models.ForeignKey(Course,on_delete=models.SET_NULL, blank=True, null=True)
+    course_title = models.CharField(max_length= 400,default='hello')
 
 
 
@@ -152,8 +154,9 @@ class BokingNow(models.Model):
     email = models.EmailField(max_length = 250)
     phone= models.CharField(max_length = 13)
     course = models.CharField(max_length=200)
-    permanent_a = models.CharField(max_length=200)
-    present_a = models.CharField(max_length=200)
+    permanent_address = models.CharField(max_length=200)
+    present_address = models.CharField(max_length=200)
+    tentative_admission_date = models.CharField(max_length=200,blank=True,null=True)
 
     class Meta:
 

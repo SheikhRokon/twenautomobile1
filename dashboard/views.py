@@ -10,23 +10,28 @@ from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta, datetime,date
 now = timezone.now()
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
+
+@login_required
 def dashboard_home(request):
-    total_visit_unique = UserIp.objects.all().values_list('user_ip', flat=True).distinct().count()
-    total_visit = UserIp.objects.all().count()
-    today_total_visit = UserIp.objects.filter(date__gte=date.today()).count()
-    today_total_visit_unique = UserIp.objects.filter(date__gte=date.today()).values_list('user_ip', flat=True).distinct().count()
+    if request.user.is_superuser:
+        total_visit_unique = UserIp.objects.all().values_list('user_ip', flat=True).distinct().count()
+        total_visit = UserIp.objects.all().count()
+        today_total_visit = UserIp.objects.filter(date__gte=date.today()).count()
+        today_total_visit_unique = UserIp.objects.filter(date__gte=date.today()).values_list('user_ip', flat=True).distinct().count()
 
 
 
-    context ={
-        'total_visit':total_visit,
-        'total_visit_unique':total_visit_unique,
-        'today_total_visit':today_total_visit,
-        'today_total_visit_unique':today_total_visit_unique,
-    }
-    return render(request, 'dashboard/index.html', context)
+        context ={
+            'total_visit':total_visit,
+            'total_visit_unique':total_visit_unique,
+            'today_total_visit':today_total_visit,
+            'today_total_visit_unique':today_total_visit_unique,
+        }
+        return render(request, 'dashboard/index.html', context)
 
 
 #visitor

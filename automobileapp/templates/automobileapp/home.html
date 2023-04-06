@@ -1,6 +1,11 @@
 {% extends 'automobileapp/base.html' %}
 {% load static %}
 
+{% block style %}
+<script src="{% static 'automobileapp/js/time.js' %}"></script>
+
+{% endblock style %}
+
 
 {% block content %}
 
@@ -174,6 +179,8 @@
         </form>
     </div>
 </div>
+
+
 
 
 <!-- Course Search Area

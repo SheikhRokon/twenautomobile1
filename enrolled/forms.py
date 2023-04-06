@@ -52,13 +52,16 @@ class bookingstudentFrom(forms.ModelForm):
         'class': 'form-control',
         'placeholder' : "Your Course" }))    
     
-    permanent_a = forms.CharField(widget= forms.TextInput(attrs={
+    permanent_address = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
         'placeholder' : "Your Permanent Address" }))
 
-    present_a = forms.CharField(widget= forms.TextInput(attrs={
+    present_address = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
         'placeholder' : "Your Present Address" }))
+    tentative_admission_date = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Day/Month/Year" }))
 
     class Meta:
         model = BokingNow

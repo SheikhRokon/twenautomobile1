@@ -38,7 +38,7 @@
         <thead class="thead-light">
           <tr>
             <th>OrderID</th>
-            <th>Enrolled</th>
+            <th>Payment Date</th>
             <th>Amount</th>
             <th>Status</th>								
             <th>Payment-Confirmed</th>
@@ -56,7 +56,7 @@
                 <td ><a href="{% url 'order-detail' p.pk %}">{{p.total_order_amount }}</a></td>
                 <td ><a href="{% url 'order-detail' p.pk %}">{{p.order_status }}</a></td>
                 {% if p.order_status == 'paid' %}
-                <td ><a href="{% url 'order-detail' p.pk %}">{{ p.order_complate_date }}</a></td>	
+                <td ><a href="{% url 'order-detail' p.pk %}">{{ p.createTime }}</a></td>	
                 {% endif %}
             </tr> 
             {% endfor %}
