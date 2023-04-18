@@ -37,27 +37,27 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th>OrderID</th>
+            <th>Trx-ID</th>
             <th>Payment Date</th>
             <th>Amount</th>
             <th>Status</th>								
-            <th>Payment-Confirmed</th>
+            <th>Course</th>
           </tr>
         </thead>
         <tbody>          
             {% for p in order %}
             <tr>
                 <td >
-                   <a href="{% url 'order-detail' p.pk %}">#{{ p.orderId }}</a> 
+                   <a href="{% url 'order-detail' p.pk %}">{{ p.trxID }}</a> 
                 </td>
                 <td>
-                    <a href="{% url 'order-detail' p.pk %}">{{ p.ordered_date }}</a>
+                    <a href="{% url 'order-detail' p.pk %}">{{ p.createTime }}</a>
                 </td>
-                <td ><a href="{% url 'order-detail' p.pk %}">{{p.total_order_amount }}</a></td>
-                <td ><a href="{% url 'order-detail' p.pk %}">{{p.order_status }}</a></td>
-                {% if p.order_status == 'paid' %}
-                <td ><a href="{% url 'order-detail' p.pk %}">{{ p.createTime }}</a></td>	
-                {% endif %}
+                <td ><a href="{% url 'order-detail' p.pk %}">{{p.amount }}</a></td>
+                <td ><a href="{% url 'order-detail' p.pk %}">{{p.transactionStatus }}</a></td>
+               
+                <td ><a href="{% url 'order-detail' p.pk %}">{{ p.course }}</a></td>	
+                
             </tr> 
             {% endfor %}
         </tbody>

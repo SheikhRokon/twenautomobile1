@@ -27,7 +27,8 @@
                         <thead>
                             <tr>
                                 <th>User</th>
-                                <th>Payment-ID</th>
+                                <th>Email</th>
+                                <th>Trx-ID</th>
                                 <th>Course</th>
                                 <th>Amount</th>                
                                 <th>Create Time</th>                
@@ -41,7 +42,8 @@
                             {% for c in bkashpayment_list %}
                             <tr>
                               <td>{{ c.user }}</td>
-                              <td>{{ c.paymentID }}</td>
+                              <td>{{ c.user.email }}</td>
+                              <td>{{ c.trxID }}</td>
                               <td>{{ c.course }}</td>
                               <td>{{ c.amount }}</td>
                               <td>{{ c.createTime }}</td>

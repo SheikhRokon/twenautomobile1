@@ -29,8 +29,7 @@
                       <thead>
                         <tr>
                             <th>ID</th>
-                            <th>First Name</th>                
-                            <th>Last Name</th>                
+                            <th>Name</th>                
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Place</th>
@@ -46,8 +45,7 @@
                         {% for c in forenquiry_list %}
                         <tr>
                           <td>{{ c.id }}</td>
-                          <td>{{ c.f_name }}</td>
-                          <td>{{ c.l_name }}</td>
+                          <td>{{ c.full_name }}</td>
                           <td>{{ c.email }}</td>
                           <td>{{ c.phone}}</td>
                           <td>{{ c.place}}</td>

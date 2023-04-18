@@ -1114,3 +1114,16 @@ def user_delete(request,pk):
     user.delete()
     messages.success(request, 'Successfully delete')
     return redirect('user-list')
+
+
+# bkashpayment
+
+def bkashpayment_list(request):
+    bkashpayment_list = BkashPaymentExecute.objects.all().order_by('-id')
+    return render(request, 'dashboard/bkashpayment/payment_list.html', {'bkashpayment_list':bkashpayment_list})
+
+def bkashpayment_delete(request,pk):
+    bkashpayment=Order.objects.get(pk=pk)
+    bkashpayment.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('bkashpayment-list')

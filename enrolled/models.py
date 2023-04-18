@@ -38,16 +38,16 @@ Order_Status = (
 class Order(models.Model): 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     cart_items = models.ManyToManyField(CartItem)
-    ordered_date = models.DateTimeField()
-    order_complate_date = models.DateTimeField(auto_now=False, auto_now_add=False,blank=True, null=True)
-    order_status = models.CharField(max_length = 150, choices=Order_Status , default='pending')
+    # order_status = models.CharField(max_length = 150, choices=Order_Status , default='pending')
     total_order_amount = models.CharField(max_length = 150, blank=True, null=True)
     ordered = models.BooleanField(default=False)
     orderId = models.CharField(max_length = 150, blank=True, null=True)
     paymentId = models.CharField(max_length = 150, blank=True, null=True) 
-    coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    # coupon = models.ForeignKey('Coupon', on_delete=models.SET_NULL, blank=True, null=True)
     payment_option = models.CharField(max_length = 150)
-    order_title = models.CharField(max_length = 150, blank=True, null=True)
+    course=models.ForeignKey(Course, on_delete=models.CASCADE,related_name ='order_to_course',null=True)
+    ordered_date = models.DateTimeField(auto_now_add=True)
+    order_complate_date = models.DateTimeField(auto_now=False, auto_now_add=False,blank=True, null=True)
     
     
     def __str__(self):
@@ -147,16 +147,19 @@ class BkashPaymentExecute(models.Model):
     intent = models.CharField(max_length=150)
     merchantInvoiceNumber = models.CharField(max_length=150)
     customerMsisdn = models.CharField(max_length=150)
+    course  = models.CharField(max_length=255, blank=True, null=True)
+
+
 
 class BokingNow(models.Model):
 
     name = models.CharField(max_length=80)
     email = models.EmailField(max_length = 250)
     phone= models.CharField(max_length = 13)
-    course = models.CharField(max_length=200)
-    permanent_address = models.CharField(max_length=200)
-    present_address = models.CharField(max_length=200)
-    tentative_admission_date = models.CharField(max_length=200,blank=True,null=True)
+    course_titel = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    tentative_admission_date = models.CharField(max_length=200, blank=True, null=True)
+    ins_org = models.CharField(max_length=200,blank=True, null=True)
 
     class Meta:
 

@@ -35,6 +35,7 @@ class PaymentMethodForm(forms.ModelForm):
         model = Order
         fields = ['payment_option']
 
+
 class bookingstudentFrom(forms.ModelForm):
     name = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
@@ -46,23 +47,28 @@ class bookingstudentFrom(forms.ModelForm):
 
     phone = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
-        'placeholder' : "Your Number" }))
-
-    course = forms.CharField(widget= forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder' : "Your Course" }))    
+        'placeholder' : "Your Contact Number" }))
     
-    permanent_address = forms.CharField(widget= forms.TextInput(attrs={
+    address = forms.CharField(widget= forms.TextInput(attrs={
         'class': 'form-control',
-        'placeholder' : "Your Permanent Address" }))
+        'placeholder' : "Your Address" }))
+        
+    ins_org = forms.CharField(widget= forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder' : "Institution/Organization" }))
 
-    present_address = forms.CharField(widget= forms.TextInput(attrs={
+    course_titel = forms.CharField( required=False, widget= forms.TextInput(attrs={
         'class': 'form-control',
-        'placeholder' : "Your Present Address" }))
-    tentative_admission_date = forms.CharField(widget= forms.TextInput(attrs={
+        'placeholder' : "Your Address" }))
+
+
+    tentative_admission_date = forms.DateField(widget= forms.DateInput(attrs={
         'class': 'form-control',
-        'placeholder' : "Day/Month/Year" }))
+        "type":"date",
+        'placeholder' : "Day/Month/Year" })
+        
+        )
 
     class Meta:
         model = BokingNow
-        fields = '__all__'
+        fields = ['name', 'email', 'phone','ins_org', 'address','course_titel', 'tentative_admission_date',]

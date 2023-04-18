@@ -32,8 +32,9 @@
                                 <th>Email</th>
                                 <th>Phone Number</th>                
                                 <th>Course</th>                
-                                <th>Permanent_Address</th>
-                                <th>Present_Address</th>
+                                <th>Institution/Organization</th>
+                                <th>Address</th>
+                                <th>Admission date</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                         
@@ -46,9 +47,10 @@
                               <td>{{ c.name }}</td>
                               <td>{{ c.email }}</td>
                               <td>{{ c.phone}}</td>
-                              <td>{{ c.course }}</td>
-                              <td>{{ c.permanent_a }}</td>
-                              <td>{{ c.present_a }}</td>
+                              <td>{{ c.course_titel }}</td>
+                              <td>{{ c.ins_org }}</td>
+                              <td>{{ c.address }}</td>
+                              <td>{{ c.tentative_admission_date }}</td>
                               <td>
                                 <a class="btn btn-outline-primary" href="{% url 'bookingstudent-edit' c.pk %}">Edit</a>
                               </td>

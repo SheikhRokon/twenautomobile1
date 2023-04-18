@@ -4,6 +4,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from automobileapp.models import *
 from django.contrib import messages
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .models import *
 from automobileapp.models import *
@@ -79,87 +80,78 @@ def CartSummary(request):
         return redirect('/')
 
 
-class PaymentView(View):
-    def get(self, request, slug, *args, **kwargs):
-        try:
-            form = OrderPaymentForm()
-            payment_method = PaymentMethodForm()
-            course = Course.objects.get(slug=slug)
-            ordered_date = timezone.now()
-            order_title = course.title
-            print(order_title)
-            if course.course_discount_price:
-                total_order_amount = course.course_discount_price
-            else:
-                total_order_amount = course.course_price
 
-            existing_order = Order.objects.filter(user=request.user, ordered=False).first()
-
-            if not existing_order:
-                Order.objects.create(user=request.user, total_order_amount=total_order_amount, ordered_date=ordered_date, order_title=order_title)
-                
+# @method_decorator(login_required, name='dispatch')
+# class PaymentView(View):
+    
+       
 
 
-            context = {
-                'form': form,
-                'payment_method': payment_method,
-                'course':course,
-                
-            }
-            return render(request, 'enrolled/payment.html', context)
-        except ObjectDoesNotExist:
-            messages.warning(request, 'You have no active order')
-            return redirect('/')
+#     def post(self, request, *args, **kwargs):
+#         order_payments  = Order.objects.all()
+#         tsn_list =[]
+#         for i in Order:
+#             tsn_list.append(i.pyamnet_transaction_id)
 
-
-    def post(self, request, *args, **kwargs):
-        order_payments  = OrderPayment.objects.all()
-        tsn_list =[]
-        for i in order_payments:
-            tsn_list.append(i.pyamnet_transaction_id)
-
-        form = OrderPaymentForm(request.POST)
-        payment_obj = Order.objects.filter(user=request.user, ordered=False)[0]
-        payment_form = PaymentMethodForm(instance=payment_obj)
+#         form = OrderPaymentForm(request.POST)
+#         payment_obj = Order.objects.filter(user=request.user, ordered=False)[0]
+#         payment_form = PaymentMethodForm(instance=payment_obj)
         
-        if request.method == 'post' or request.method == 'POST':
-            form = OrderPaymentForm(request.POST)
-            pay_form = PaymentMethodForm(request.POST, instance=payment_obj)
-            if form.is_valid() and pay_form.is_valid():
-                payment_method =form.cleaned_data.get('payment_method')
-                your_payment_number =form.cleaned_data.get('your_payment_number')
-                pyamnet_transaction_id =form.cleaned_data.get('pyamnet_transaction_id')
+#         if request.method == 'post' or request.method == 'POST':
+#             form = OrderPaymentForm(request.POST)
+#             pay_form = PaymentMethodForm(request.POST, instance=payment_obj)
+#             if form.is_valid() and pay_form.is_valid():
+#                 payment_method =form.cleaned_data.get('payment_method')
+#                 your_payment_number =form.cleaned_data.get('your_payment_number')
+#                 pyamnet_transaction_id =form.cleaned_data.get('pyamnet_transaction_id')
 
-                order_payment  = OrderPayment(
-                    user=request.user,
-                    payment_method=payment_method,
-                    your_payment_number=your_payment_number,
-                    pyamnet_transaction_id=pyamnet_transaction_id
-                )
-                order_payment.save()
-                pay_method = pay_form.save()
+#                 order_payment  = OrderPayment(
+#                     user=request.user,
+#                     payment_method=payment_method,
+#                     your_payment_number=your_payment_number,
+#                     pyamnet_transaction_id=pyamnet_transaction_id
+#                 )
+#                 order_payment.save()
+#                 pay_method = pay_form.save()
 
-                if pay_method.payment_option == 'Bkash' or pay_method.payment_option == 'Nagad' or pay_method.payment_option == 'Roket':
-                    if pay_method.payment_option == order_payment.payment_method:
-                        order_qs = Order.objects.filter(user=request.user, ordered=False)
-                        order = order_qs[0]
-                        order.ordered = True
-                        order.orderId = order.id
-                        order.total_order_amount = order.get_total()
-                        order.paymentId = pay_method.payment_option
+#                 if pay_method.payment_option == 'Bkash' or pay_method.payment_option == 'Nagad' or pay_method.payment_option == 'Roket':
+#                     if pay_method.payment_option == order_payment.payment_method:
+#                         order_qs = Order.objects.filter(user=request.user, ordered=False)
+#                         order = order_qs[0]
+#                         order.ordered = True
+#                         order.orderId = order.id
+#                         order.total_order_amount = order.get_total()
+#                         order.paymentId = pay_method.payment_option
                         
-                        order.save()
-                        messages.info(request, "You order was successful")
-                        return redirect('/')
-                    else:
-                        messages.info(request, "payment method not matching")
-                        return redirect('payment-form')
-            return redirect('payment-form')
+#                         order.save()
+#                         messages.info(request, "You order was successful")
+#                         return redirect('/')
+#                     else:
+#                         messages.info(request, "payment method not matching")
+#                         return redirect('payment-form')
+#             return redirect('payment-form')
+
+@login_required
+def payment_view(request,slug):
+    course = get_object_or_404(Course, slug=slug)
+    if course.course_discount_price:
+        order_course, created = Order.objects.get_or_create(course=course,total_order_amount=course.course_discount_price, user=request.user, ordered=False)
+    else:
+        order_course, created = Order.objects.get_or_create(course=course,total_order_amount=course.course_price, user=request.user, ordered=False) 
+
+    global val
+    def val():
+        return course.id
+
+    context = {
+        'course':course
+    }
+    return render(request,'enrolled/payment.html',context)
 
 @login_required
 def OrderSummary(request):
     try:
-        order =Order.objects.filter(user=request.user, ordered=True)
+        order =BkashPaymentExecute.objects.filter(user=request.user)
         context={
             'order':order,
         }
@@ -198,7 +190,7 @@ def remove_form_cart(request, slug):
         return redirect('payment-form')
 
 
-def certificate_verification(request):
+def certificate_verification(request):  
     return render(request, 'enrolled/certificate-verification.html')
 
 def certificate12(request):
@@ -215,18 +207,22 @@ def certificate_search(request):
 
 def bookInStudent(request, slug):
     obj = get_object_or_404(Course, slug=slug)
+    a =  obj.title
 
     if request.method == 'POST':
         forms = bookingstudentFrom(request.POST)
         if forms.is_valid():
-            forms.save()
+            order = forms.save(commit=False)
+            
+            order.course_titel = a
+            order.save()
+            
             return redirect('home')
     else:
-        forms = bookingstudentFrom()
+        order = bookingstudentFrom()
     
-
         context = {
-            'forms':forms,
+            'forms':order,
             'obj':obj
         }
 
@@ -241,12 +237,12 @@ def bookInStudent(request, slug):
 import requests
 import json
 from django.views.decorators.csrf import csrf_exempt
-app_key = "P5QrSF1LqGjNHRVTS9sDuyTotc"
-app_secret = "4EZ8OjV6Yaqla2ONI32lvdHEYSfc9i14NZCu2GeSCDSQgopo6mae"
+app_key = "4f6o0cjiki2rfm34kfdadl1eqq"
+app_secret = "2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b"
 
 @csrf_exempt
 def grant_token_function():
-    token_url = "https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant"
+    token_url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant"
     payload = {
     "app_key":f"{app_key}",
     "app_secret":f"{app_secret}"
@@ -255,8 +251,8 @@ def grant_token_function():
     headers = {
         "Content-Type":"application/json",
         "Accept":"application/json",
-        "username":"01737158996",
-        "password":"ir;uG%2nHj+"
+        "username":"sandboxTokenizedUser02",
+        "password":"sandboxTokenizedUser02@12345"
     }
 
     token_response = requests.post(token_url, json=payload, headers=headers)
@@ -270,18 +266,18 @@ def grant_token_function():
 
 @login_required
 @csrf_exempt
-def create_bkash_payment(request, *args, **kwargs):
+def create_bkash_payment(request,slug):
     id_token = grant_token_function()
-    create_url = "https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/create"
-    order = Order.objects.get(user=request.user, ordered=False)
+    create_url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/create"
+    course = get_object_or_404(Course, slug=slug)
     payload = json.dumps({
         "mode": "0011",
         "payerReference": "N/A",
-        "callbackURL":"https://www.tweenautoschool.com/execute_bkash_payment/",
-        "amount": f"{order.total_order_amount}",
+        "callbackURL":"http://127.0.0.1:8000/execute_bkash_payment/",
+        "amount": f"{course.course_discount_price or course.course_price}",
         "currency": "BDT",
         "intent": "sale",
-        "merchantInvoiceNumber": f"{order.id}"
+        "merchantInvoiceNumber": f"{course.id}"
     })
 
     headers = {
@@ -293,7 +289,6 @@ def create_bkash_payment(request, *args, **kwargs):
 
     create_response = requests.post(create_url, data=payload, headers=headers)
     response = json.loads(create_response.content)
-   
     paymentId=response['paymentID']
     createTime=response['paymentCreateTime']
     transactionStatus = response['transactionStatus']
@@ -302,7 +297,7 @@ def create_bkash_payment(request, *args, **kwargs):
     intent = response['intent']
     merchantInvoiceNumber = response['merchantInvoiceNumber']
     
-    BkashPayment.objects.create(user=request.user, paymentID=paymentId, createTime=createTime, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, course=order.order_title)
+    BkashPayment.objects.create(user=request.user, paymentID=paymentId, createTime=createTime, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, course=course.title)
  
 
     return redirect(response['bkashURL'])
@@ -330,9 +325,6 @@ def execute_bkash_payment(request):
     response = json.loads(response_create.content)
 
     if response.get("statusCode") == "0000" and response.get("statusMessage") == "Successful":
-        trxID=response.get('trxID')
-        paymentID=response.get('paymentID')
-
         paymentID=response.get('paymentID')
         createTime=response.get('paymentExecuteTime')
         trxID = response.get('trxID')

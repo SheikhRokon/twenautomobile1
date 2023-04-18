@@ -146,12 +146,11 @@ class UpcommingCourse(models.Model):
 
  
 class ForEnquiry(models.Model):
-    f_name = models.CharField(max_length=200)
-    l_name = models.CharField(max_length=200)
+    full_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=50)
     place = models.CharField(max_length=200)
-    course_type  = models.ForeignKey(CourseCategory, on_delete=models.CASCADE)
+    course_type  = models.ForeignKey(Course, on_delete=models.CASCADE)
     message  = models.TextField()
     
 

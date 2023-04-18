@@ -67,7 +67,7 @@ class RegisterForm(UserCreationForm):
                 "placeholder":"Enter your second name.."
             }) 
             )
-    username = forms.CharField(max_length=30,label = "Username Or Email",
+    username = forms.CharField(max_length=30, label = "Username or Email",
         widget=forms.TextInput(attrs={
             "class":"form-control",
             "placeholder":"Enter your username or email"
@@ -97,7 +97,7 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
-    username = UsernameField(label = "Username Or Email",widget=forms.TextInput(
+    username = UsernameField(label = "Username or Email",widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter your username or email',}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
