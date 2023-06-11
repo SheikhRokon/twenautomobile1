@@ -147,9 +147,6 @@ class BkashPaymentExecute(models.Model):
     intent = models.CharField(max_length=150)
     merchantInvoiceNumber = models.CharField(max_length=150)
     customerMsisdn = models.CharField(max_length=150)
-    course  = models.CharField(max_length=255, blank=True, null=True)
-
-
 
 class BokingNow(models.Model):
 

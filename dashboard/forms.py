@@ -156,6 +156,6 @@ class UserprofileForm(forms.ModelForm):
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = BkashPaymentExecute
+        model = User
         fields = '__all__'            
 

@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'enrolled',
     'dashboard',
-    'fontawesomefree',
+    'certificate_app',
+    'import_export',
+    
 ]
 
 MIDDLEWARE = [

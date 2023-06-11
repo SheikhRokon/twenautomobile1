@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from userapp.models import *
 from automobileapp.models import *
 from enrolled.models import *
+from certificate_app.models import *
 from .forms import *
 
 # Create your views here.
@@ -1093,7 +1094,7 @@ def user_add(request):
             return redirect('user-list')
     else:
         form = UserForm()
-    return render(request, 'dashboard/UserForm/add.html', {'form':form})
+    return render(request, 'dashboard/user/add.html', {'form':form})
 
 def user_edit(request,pk):
     user = User.objects.get(pk=pk)
@@ -1115,11 +1116,47 @@ def user_delete(request,pk):
     messages.success(request, 'Successfully delete')
     return redirect('user-list')
 
+# student certificate data
+
+def student_cer_data_list(request):
+    user_list = User.objects.all().order_by('-id')
+    return render(request, 'dashboard/user/list.html', {'user_list':user_list})
+
+def student_cer_data_add(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('user-list')
+    else:
+        form = UserForm()
+    return render(request, 'dashboard/user/add.html', {'form':form})
+
+def student_cer_data_edit(request,pk):
+    user = User.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = UserForm(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-list') 
+        else:
+            return redirect('user-add')
+    else:
+        form = UserForm(instance=user)
+    return render(request, 'dashboard/user/add.html', {'form':form})
+
+
+def student_cer_data_delete(request,pk):
+    user=User.objects.get(pk=pk)
+    user.delete()
+    messages.success(request, 'Successfully delete')
+    return redirect('user-list')
+
 
 # bkashpayment
 
 def bkashpayment_list(request):
-    bkashpayment_list = BkashPaymentExecute.objects.all().order_by('-id')
+    bkashpayment_list = Order.objects.all().order_by('-id')
     return render(request, 'dashboard/bkashpayment/payment_list.html', {'bkashpayment_list':bkashpayment_list})
 
 def bkashpayment_delete(request,pk):

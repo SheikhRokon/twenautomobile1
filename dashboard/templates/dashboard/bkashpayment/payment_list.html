@@ -28,7 +28,7 @@
                             <tr>
                                 <th>User</th>
                                 <th>Email</th>
-                                <th>Trx-ID</th>
+                                <th>Payment-ID</th>
                                 <th>Course</th>
                                 <th>Amount</th>                
                                 <th>Create Time</th>                
@@ -43,11 +43,11 @@
                             <tr>
                               <td>{{ c.user }}</td>
                               <td>{{ c.user.email }}</td>
-                              <td>{{ c.trxID }}</td>
+                              <td>{{ c.orderId }}</td>
                               <td>{{ c.course }}</td>
-                              <td>{{ c.amount }}</td>
-                              <td>{{ c.createTime }}</td>
-                              <td>{{ c.transactionStatus }}</td>
+                              <td>{{ c.total_order_amount }}</td>
+                              <td>{{ c.ordered_date }}</td>
+                              <td>{{ c.ordered }}</td>
                               <td>
                                   <a class="btn btn-outline-danger" href="{% url 'bkashpayment-delete' c.pk %}">Delete</a>
                                 </td>

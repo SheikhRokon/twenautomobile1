@@ -151,7 +151,7 @@ def payment_view(request,slug):
 @login_required
 def OrderSummary(request):
     try:
-        order =BkashPaymentExecute.objects.filter(user=request.user)
+        order =Order.objects.filter(user=request.user)
         context={
             'order':order,
         }
@@ -190,7 +190,7 @@ def remove_form_cart(request, slug):
         return redirect('payment-form')
 
 
-def certificate_verification(request):  
+def certificate_verification(request):
     return render(request, 'enrolled/certificate-verification.html')
 
 def certificate12(request):
@@ -237,12 +237,12 @@ def bookInStudent(request, slug):
 import requests
 import json
 from django.views.decorators.csrf import csrf_exempt
-app_key = "4f6o0cjiki2rfm34kfdadl1eqq"
-app_secret = "2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b"
+app_key = "P5QrSF1LqGjNHRVTS9sDuyTotc"
+app_secret = "4EZ8OjV6Yaqla2ONI32lvdHEYSfc9i14NZCu2GeSCDSQgopo6mae"
 
 @csrf_exempt
 def grant_token_function():
-    token_url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant"
+    token_url = "https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/token/grant"
     payload = {
     "app_key":f"{app_key}",
     "app_secret":f"{app_secret}"
@@ -251,8 +251,8 @@ def grant_token_function():
     headers = {
         "Content-Type":"application/json",
         "Accept":"application/json",
-        "username":"sandboxTokenizedUser02",
-        "password":"sandboxTokenizedUser02@12345"
+        "username":"01737158996",
+        "password":"ir;uG%2nHj+"
     }
 
     token_response = requests.post(token_url, json=payload, headers=headers)
@@ -268,12 +268,12 @@ def grant_token_function():
 @csrf_exempt
 def create_bkash_payment(request,slug):
     id_token = grant_token_function()
-    create_url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/create"
+    create_url = "https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/create"
     course = get_object_or_404(Course, slug=slug)
     payload = json.dumps({
         "mode": "0011",
         "payerReference": "N/A",
-        "callbackURL":"http://127.0.0.1:8000/execute_bkash_payment/",
+        "callbackURL":"https://www.tweenautoschool.com/execute_bkash_payment/",
         "amount": f"{course.course_discount_price or course.course_price}",
         "currency": "BDT",
         "intent": "sale",
@@ -309,7 +309,7 @@ def execute_bkash_payment(request):
     id_token = grant_token_function()
     length = BkashPayment.objects.filter(user=request.user).count()
     Id = BkashPayment.objects.filter(user=request.user)[length-1].paymentID 
-    url = "https://tokenized.sandbox.bka.sh/v1.2.0-beta/tokenized/checkout/execute"
+    url = "https://tokenized.pay.bka.sh/v1.2.0-beta/tokenized/checkout/execute"
 
     payload = {
         "paymentID":f"{Id}",
@@ -325,6 +325,9 @@ def execute_bkash_payment(request):
     response = json.loads(response_create.content)
 
     if response.get("statusCode") == "0000" and response.get("statusMessage") == "Successful":
+        trxID=response.get('trxID')
+        paymentID=response.get('paymentID')
+
         paymentID=response.get('paymentID')
         createTime=response.get('paymentExecuteTime')
         trxID = response.get('trxID')
@@ -336,9 +339,8 @@ def execute_bkash_payment(request):
         customerMsisdn = response.get('customerMsisdn')
 
         BkashPaymentExecute.objects.create(user=request.user, paymentID=paymentID, createTime=createTime, trxID=trxID, transactionStatus=transactionStatus , amount=amount, currency=currency,  intent=intent, merchantInvoiceNumber=merchantInvoiceNumber, customerMsisdn=customerMsisdn)
-        # order_qs = Order.objects.filter(user=request.user, ordered=False)
+        # order = Order.objects.filter(user=request.user, ordered=False)
         order = Order.objects.get(user=request.user, ordered=False)
-        # order = order_qs[0]
         order.ordered = True
         order.orderId = order.id
         order.payment_option = 'Bkash'
@@ -350,7 +352,7 @@ def execute_bkash_payment(request):
 
         order.save()
         messages.success(request, "Your Payment successful done")
-        return redirect("/")
+        return redirect("order-summary")
 
     elif response.get("statusCode") == "2023" and response.get("statusMessage") == "Insufficient Balance":
         messages.success(request, "Insufficient Balance")

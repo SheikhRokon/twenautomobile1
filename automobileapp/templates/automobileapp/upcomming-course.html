@@ -90,10 +90,10 @@
                             <li>{{ cs.course_duration_for_hours }} Hours </li>                               
                             {% endif %}
                             {% if cs.course_discount_price %}
-                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{ cs.course_discount_price }}</li>                               
+                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">New Price : Tk {{ cs.course_discount_price }} </li>                               
                             <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Old Price : <del>Tk {{ cs.course_price }}</del> </li>                               
                             {% else %}
-                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }}</li>                               
+                            <li style="text-align: right; margin-right: 10px; opacity: 0.6;">Tk {{ cs.course_price }} </li>                               
                             {% endif %}  
                         </ul>
                         <a href="{% url 'course-detals' cs.slug %}" class="pricing-action">View Details</a>

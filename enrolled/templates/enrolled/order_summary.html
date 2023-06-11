@@ -37,7 +37,7 @@
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th>Trx-ID</th>
+            <th>OrderID</th>
             <th>Payment Date</th>
             <th>Amount</th>
             <th>Status</th>								
@@ -48,13 +48,13 @@
             {% for p in order %}
             <tr>
                 <td >
-                   <a href="{% url 'order-detail' p.pk %}">{{ p.trxID }}</a> 
+                   <a href="{% url 'order-detail' p.pk %}">#{{ p.orderId }}</a> 
                 </td>
                 <td>
-                    <a href="{% url 'order-detail' p.pk %}">{{ p.createTime }}</a>
+                    <a href="{% url 'order-detail' p.pk %}">{{ p.ordered_date }}</a>
                 </td>
-                <td ><a href="{% url 'order-detail' p.pk %}">{{p.amount }}</a></td>
-                <td ><a href="{% url 'order-detail' p.pk %}">{{p.transactionStatus }}</a></td>
+                <td ><a href="{% url 'order-detail' p.pk %}">{{p.total_order_amount }}</a></td>
+                <td ><a href="{% url 'order-detail' p.pk %}">{{p.ordered }}</a></td>
                
                 <td ><a href="{% url 'order-detail' p.pk %}">{{ p.course }}</a></td>	
                 

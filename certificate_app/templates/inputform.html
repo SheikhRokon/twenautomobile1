@@ -1,0 +1,21 @@
+ 
+
+ {% extends 'dashboard/base.html' %}
+
+
+ {% block dashboard_content %}
+ <div style="margin: 200px 200px 200px 500px">
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="myfile">
+      <button type="submit">Upload</button>
+    </form>
+</div>
+ {% endblock dashboard_content %}
+
+
+
+
+
+    
+ 
