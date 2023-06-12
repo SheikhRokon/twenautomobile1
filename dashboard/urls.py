@@ -189,5 +189,11 @@ urlpatterns = [
     path('dashboard/user-add/', user_add, name='user-add'),
     path('dashboard/user_edit/<pk>',user_edit, name='user-edit'),
     path('dashboard/user_delete/<pk>/',user_delete, name='user-delete'),
+
+    #student certificate data
+    path('dashboard/student_cer_data-list/', student_cer_data_list, name='student_cer_data-list'),
+    path('dashboard/student_cer_data-add/', student_cer_data_add, name='student_cer_data-add'),
+    path('dashboard/student_cer_data/<pk>',student_cer_data_edit, name='student_cer_data-edit'),
+    path('dashboard/student_cer_data/<pk>/',student_cer_data_delete, name='student_cer_data-delete'),
     
 ]

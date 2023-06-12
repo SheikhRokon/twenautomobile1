@@ -1,0 +1,87 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block dashboard_content %}
+      <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="container-full">
+      <!-- Content Header (Page header) -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box">
+              <div class="box-header with-border">
+                
+                <div class="row">
+                    <div class="col-8">
+                        <h3 class="box-title">Student certificate data List</h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <a class="btn btn-info me-1" href="{% url 'student_cer_data-add' %}">User Add</a>
+                    </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Student ID</th>
+                                <th>Registration Number</th>
+                                <th>Course</th>
+                                <th>Father Name</th>
+                                <th>Date of Birth </th>
+                                <th>Course Type</th>
+                                <th>Start and End Date</th>
+                                <th>Institute</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                        
+                            </tr>
+                          </thead>
+                          <tbody>
+                            
+                            {% for c in student_cer %}
+                            <tr>
+                              <td>{{ c.name }}</td>
+                              <td>{{ c.student_id }}</td>
+                              <td>{{ c.regis_number }}</td>
+                              <td>{{ c.course_name }}</td>
+                              <td>{{ c.father_name }}</td>
+                              <td>{{ c.date_of_birth }}</td>
+                              <td>{{ c.course_type }}</td>
+                              <td>{{ c.start_and_end_date }}</td>
+                              <td>{{ c.institute }}</td>
+                              <td>
+                                <a class="btn btn-outline-primary" href="{% url 'student_cer_data-edit' c.pk %}">Edit</a>
+                              </td>
+                              <td>
+                                  <a class="btn btn-outline-danger" href="{% url 'student_cer_data-delete' c.pk %}">Delete</a>
+                                </td>
+                          </tr>
+                            {% endfor %}
+                              
+                          </tbody>	  
+                    </table>
+                  </div>              
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->          
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    
+    </div>
+</div>
+<!-- /.content-wrapper -->
+{% endblock dashboard_content %}
+    
+
+

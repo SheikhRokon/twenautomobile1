@@ -1,70 +1,8 @@
 <!doctype html>
+{% load static %}
+
 <html class="no-js" lang="en">
 <head>
-    <!-- Google -->
-	<meta name="google-site-verification" content="qfUl6ZJQAIywh9WpytjbpxMZ1UijQQdMBx4uRhPUnQg" />
-	
-	<!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '129973116735732');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=129973116735732&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-	
-	<!-- whatsapp Chat plugin Code -->
-
-	<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-	<script>
-		var wa_btnSetting = { "btnColor": "#16BE45", "ctaText": "", "cornerRadius": 50, "marginBottom": 40, "marginLeft": 20, "marginRight": 20, "btnPosition": "left", "whatsAppNumber": "+8801737158996", "welcomeMessage": "how may i help you?", "zIndex": 999999, "btnColorScheme": "light" };
-		window.onload = () => {
-			_waEmbed(wa_btnSetting);
-		};
-	</script>
-
-	<!-- Messenger Chat plugin Code -->
-	<div id="fb-root"></div>
-
-	<!-- Your Chat plugin code -->
-	<div id="fb-customer-chat" class="fb-customerchat">
-	</div>
-
-	<script>
-		var chatbox = document.getElementById('fb-customer-chat');
-		chatbox.setAttribute("page_id", "165112330711725");
-		chatbox.setAttribute("attribution", "biz_inbox");
-	</script>
-
-	<!-- Your SDK code -->
-	<script>
-		window.fbAsyncInit = function () {
-			FB.init({
-				xfbml: true,
-				version: 'v14.0'
-			});
-		};
-
-		(function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-	{% load static %}
-
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Home || TWEEN Automobile</title>
@@ -114,6 +52,68 @@
 
 
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="0G8Co7lQ"></script>
+
+ <!-- Google -->
+ <meta name="google-site-verification" content="qfUl6ZJQAIywh9WpytjbpxMZ1UijQQdMBx4uRhPUnQg" />
+	
+ <!-- Meta Pixel Code -->
+ <script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '129973116735732');
+	fbq('track', 'PageView');
+ </script>
+ <noscript><img height="1" width="1" style="display:none"
+ src="https://www.facebook.com/tr?id=129973116735732&ev=PageView&noscript=1"
+ /></noscript>
+ <!-- End Meta Pixel Code -->
+ 
+ <!-- whatsapp Chat plugin Code -->
+
+ <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+ <script>
+	 var wa_btnSetting = { "btnColor": "#16BE45", "ctaText": "", "cornerRadius": 50, "marginBottom": 40, "marginLeft": 20, "marginRight": 20, "btnPosition": "left", "whatsAppNumber": "+8801737158996", "welcomeMessage": "how may i help you?", "zIndex": 999999, "btnColorScheme": "light" };
+	 window.onload = () => {
+		 _waEmbed(wa_btnSetting);
+	 };
+ </script>
+
+ <!-- Messenger Chat plugin Code -->
+ <div id="fb-root"></div>
+
+ <!-- Your Chat plugin code -->
+ <div id="fb-customer-chat" class="fb-customerchat">
+ </div>
+
+ <script>
+	 var chatbox = document.getElementById('fb-customer-chat');
+	 chatbox.setAttribute("page_id", "165112330711725");
+	 chatbox.setAttribute("attribution", "biz_inbox");
+ </script>
+
+ <!-- Your SDK code -->
+ <script>
+	 window.fbAsyncInit = function () {
+		 FB.init({
+			 xfbml: true,
+			 version: 'v14.0'
+		 });
+	 };
+
+	 (function (d, s, id) {
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) return;
+		 js = d.createElement(s); js.id = id;
+		 js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		 fjs.parentNode.insertBefore(js, fjs);
+	 }(document, 'script', 'facebook-jssdk'));
+ </script>
 
 	{% block style %}
 

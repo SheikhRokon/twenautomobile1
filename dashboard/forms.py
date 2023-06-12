@@ -1,6 +1,7 @@
 from userapp.models import *
 from automobileapp.models import *
 from enrolled.models import *
+from certificate_app.models import *
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 
@@ -157,5 +158,10 @@ class UserprofileForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
+        fields = '__all__'    
+
+class Student_cer_dataForm(forms.ModelForm):
+    class Meta:
+        model = Student_data
         fields = '__all__'            
 

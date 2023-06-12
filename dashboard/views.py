@@ -1119,38 +1119,38 @@ def user_delete(request,pk):
 # student certificate data
 
 def student_cer_data_list(request):
-    user_list = User.objects.all().order_by('-id')
-    return render(request, 'dashboard/user/list.html', {'user_list':user_list})
+    student_cer = Student_data.objects.all().order_by('-id')
+    return render(request, 'dashboard/student_certificate_data/list.html', {'student_cer':student_cer})
 
 def student_cer_data_add(request):
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES)
+        form = Student_cer_dataForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('user-list')
+            return redirect('student_cer_data-list')
     else:
-        form = UserForm()
-    return render(request, 'dashboard/user/add.html', {'form':form})
+        form = Student_cer_dataForm()
+    return render(request, 'dashboard/student_certificate_data/add.html', {'form':form})
 
 def student_cer_data_edit(request,pk):
-    user = User.objects.get(pk=pk)
+    student_cer = Student_data.objects.get(pk=pk)
     if request.method == 'POST':
-        form = UserForm(request.POST,request.FILES,instance=user)
+        form = Student_cer_dataForm(request.POST,request.FILES,instance=student_cer)
         if form.is_valid():
             form.save()
-            return redirect('user-list') 
+            return redirect('student_cer_data-list') 
         else:
-            return redirect('user-add')
+            return redirect('student_cer_data-add')
     else:
-        form = UserForm(instance=user)
-    return render(request, 'dashboard/user/add.html', {'form':form})
+        form = Student_cer_dataForm(instance=student_cer)
+    return render(request, 'dashboard/student_certificate_data/add.html', {'form':form})
 
 
 def student_cer_data_delete(request,pk):
-    user=User.objects.get(pk=pk)
-    user.delete()
+    student_cer=Student_data.objects.get(pk=pk)
+    student_cer.delete()
     messages.success(request, 'Successfully delete')
-    return redirect('user-list')
+    return redirect('student_cer_data-list')
 
 
 # bkashpayment
