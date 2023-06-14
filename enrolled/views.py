@@ -197,7 +197,7 @@ def certificate_verification(request):
 
 def certificate_verification_result(request):
     query = request.GET['qurey']
-    certificate_search = Q(student_id__icontains=query) 
+    certificate_search = Q(student_id__iexact=query)
     cer_ver_resul = Student_data.objects.filter(certificate_search)
     context={
         'cer_ver_resul':cer_ver_resul

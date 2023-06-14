@@ -73,53 +73,64 @@
 
     <div class="container">
         
-        {% for x in cer_ver_resul %}
-        <div class="row col-md-6 mx-auto">
-            <h4 style="margin-bottom: 10px;">Congratulations!Your are Commpelted this Course</h4>
-            <table class="table">
-                
-                <tbody>
-                    <tr>
-                        <td>Name</td>
-                        <td>{{ x.name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Student ID</td>
-                        <td>{{ x.student_id }}</td>
-                    </tr>
-                    <tr>
-                        <td>Course Name</td>
-                        <td>{{ x.course_name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Registration Number</td>
-                        <td>{{ x.regis_number }}</td>
-                    </tr>
-                    <tr>
-                        <td>Father Name</td>
-                        <td>{{ x.father_name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Course Type</td>
-                        <td>{{ x.course_type }}</td>
-                    </tr>
-                    <tr>
-                        <td>Date of birth</td>
-                        <td>{{ x.date_of_birth }}</td>
-                    </tr>
-                    <tr>
-                        <td>Start and End Date</td>
-                        <td>{{ x.start_and_end_date }}</td>
-                    </tr>
-                    <tr>
-                        <td>Institute</td>
-                        <td>{{ x.institute }}</td>
-                    </tr>
-                </tbody>
-                
-            </table>
-        </div>
-        {% endfor %}
+  
+
+        
+        {% if cer_ver_resul %}
+            {% for x in cer_ver_resul %}
+            <div class="row col-md-6 mx-auto">
+                <h4 style="margin-bottom: 10px;">Congratulations!Your are Commpelted this Course</h4>
+                <table class="table">
+                    
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ x.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Student ID</td>
+                            <td>{{ x.student_id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Course Name</td>
+                            <td>{{ x.course_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Registration Number</td>
+                            <td>{{ x.regis_number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Father Name</td>
+                            <td>{{ x.father_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Course Type</td>
+                            <td>{{ x.course_type }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of birth</td>
+                            <td>{{ x.date_of_birth }}</td>
+                        </tr>
+                        <tr>
+                            <td>Start and End Date</td>
+                            <td>{{ x.start_and_end_date }}</td>
+                        </tr>
+                        <tr>
+                            <td>Institute</td>
+                            <td>{{ x.institute }}</td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+            {% endfor %}
+        {% else %}
+             <h1 class="text-danger text-center m-5"> !No result found</h1> 
+        {% endif %}
+            
+            
+        
+        
             
         
     </div>
