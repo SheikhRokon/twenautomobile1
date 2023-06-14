@@ -37,4 +37,5 @@ def student_data(request):
                 data[9],
                 )
             value.save()
+            return redirect('student_cer_data-list')
     return render(request, 'inputform.html')

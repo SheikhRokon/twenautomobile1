@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('certificate/', certificate12, name='certificate'),
     path('certificate-verification/', certificate_verification, name='certificate-verification'),
+    path('certificate_verification_result/', certificate_verification_result, name='certificate_verification_result'),
     path('certificate-search/', certificate_search, name='certificate-search'),
     path('create_bkash_payment/<slug>/',create_bkash_payment, name='create_bkash_payment'),
     path('execute_bkash_payment/',execute_bkash_payment, name='execute_bkash_payment'),

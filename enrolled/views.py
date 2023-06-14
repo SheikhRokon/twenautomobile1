@@ -2,12 +2,12 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.shortcuts import render,get_object_or_404,redirect
 from automobileapp.models import *
+from certificate_app.models import *
 from django.contrib import messages
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .models import *
-from automobileapp.models import *
 from .forms import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import View
@@ -15,6 +15,8 @@ from django.db.models import F
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import Permission, User
+
+
 
 
 @login_required
@@ -192,6 +194,15 @@ def remove_form_cart(request, slug):
 
 def certificate_verification(request):
     return render(request, 'enrolled/certificate-verification.html')
+
+def certificate_verification_result(request):
+    query = request.GET['qurey']
+    certificate_search = Q(student_id__icontains=query) 
+    cer_ver_resul = Student_data.objects.filter(certificate_search)
+    context={
+        'cer_ver_resul':cer_ver_resul
+    }
+    return render(request, 'enrolled/certificate_verification_result.html',context)
 
 def certificate12(request):
     return render(request, 'enrolled/certificate.html')    
