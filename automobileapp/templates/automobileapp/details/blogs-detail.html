@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block fb_meta %}
-<meta property="og:url"           content="https://tweenautoschool.com/blog-details/{{ blogs.slug }}" />
+<meta property="og:url"           content="https://tweenautoschool.com/blog-details/{{ blogs.pk }}" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="{{ blogs.title }}" />
 <meta property="og:description"   content="{{blogs.description|striptags}}" />
-<meta property="og:image"         content="https://tweenautoschool.com/{{ blogs.image.url }}" />
+<meta property="og:image"         content="https://tweenautoschool.com{{ blogs.image.url }}" />
 {% endblock fb_meta %}
 
 
@@ -25,6 +25,8 @@
 {% endblock style %}
 
 {% block content %}
+
+
 
     <div class="page-banner-area overlay overlay-black overlay-70">
         <div class="container">
@@ -47,7 +49,7 @@
                     <div class="text-center">
                         <img src="{{ blogs.image.url }}" alt="" />
                     </div>
-                    <iframe style="margin-top: 5px; margin-left: 30px;" src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Ftweenautoschool.com%2F&width=450&layout&action&size&share=true&height=35&appId" width="450" height="35" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Ftweenautoschool.com%2Fblog-details%2F{{ blogs.pk }}%2F&layout&size&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden; margin: 20px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                                 
                         
 
@@ -96,9 +98,5 @@
         {% endcomment %}
             
     </div>
-
-
-
-
 
 {% endblock content %}
