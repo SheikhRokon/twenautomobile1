@@ -77,39 +77,37 @@
         
         {% if cer_ver_resul %}
             {% for x in cer_ver_resul %}
-            <div class="row col-md-6 mx-auto">
+            <div class="row col-md-6 mx-auto mt-3">
                 <h4 style="margin-bottom: 10px;">Congratulations!Your are Commpelted this Course</h4>
-                <table class="table">
+                <table class="table mb-3">
                     
-                    <tbody>
+                    <tbody style="border: 2px solid rgb(105, 105, 2);">
                         <tr>
-                            <td>Name</td>
+                            <td> Course Name</td>
+                            <td>{{ x.course_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Student's Name</td>
                             <td>{{ x.name }}</td>
                         </tr>
                         <tr>
-                            <td>Student ID</td>
-                            <td>{{ x.student_id }}</td>
+                            <td>Father Name</td>
+                            <td>{{ x.father_name }}</td>
                         </tr>
+                        
                         <tr>
-                            <td>Course Name</td>
-                            <td>{{ x.course_name }}</td>
+                            <td>Date of birth</td>
+                            <td>{{ x.date_of_birth }}</td>
                         </tr>
                         <tr>
                             <td>Registration Number</td>
                             <td>{{ x.regis_number }}</td>
                         </tr>
                         <tr>
-                            <td>Father Name</td>
-                            <td>{{ x.father_name }}</td>
-                        </tr>
-                        <tr>
                             <td>Course Type</td>
                             <td>{{ x.course_type }}</td>
                         </tr>
-                        <tr>
-                            <td>Date of birth</td>
-                            <td>{{ x.date_of_birth }}</td>
-                        </tr>
+                        
                         <tr>
                             <td>Start and End Date</td>
                             <td>{{ x.start_and_end_date }}</td>
